@@ -215,12 +215,12 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-zinc-800">
-                    <div className="flex flex-col sm:items-end">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between sm:justify-end gap-3 shrink-0 pt-2.5 sm:pt-0 border-t sm:border-t-0 border-zinc-800/80">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center">
                       <span className="text-base font-bold text-zinc-100 font-mono tabular-nums">
                         {formatINR(item.amount)}
                       </span>
-                      <span className="text-xs font-mono">
+                      <span className="text-xs font-mono ml-2 sm:ml-0">
                         {isReserved && (
                           <span className="text-accent-lime font-medium">
                             {daysUntil > 0 ? `Due in ${daysUntil} days` : 'Due today'}
@@ -238,7 +238,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 flex-wrap justify-end">
                       {isReserved && (
                         <>
                           <Button
@@ -266,6 +266,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                         onClick={() => onEditCommitment(item)}
                         className="p-1.5 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 cursor-pointer"
                         title="Edit commitment"
+                        aria-label={`Edit ${item.title}`}
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
@@ -275,6 +276,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                         onClick={() => finance.deleteCommitment(item.id)}
                         className="p-1.5 rounded hover:bg-zinc-800 text-zinc-400 hover:text-red-400 cursor-pointer"
                         title="Delete commitment"
+                        aria-label={`Delete ${item.title}`}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

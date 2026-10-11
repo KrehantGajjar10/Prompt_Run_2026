@@ -7,6 +7,7 @@ import type { CategorySpendingSummary } from '../../lib/calculations';
 import { WelcomeBanner } from './WelcomeBanner';
 import { BudgetSummaryCards } from './BudgetSummaryCards';
 import { MonthProgressBar } from './MonthProgressBar';
+import { BudgetPacingForecast } from './BudgetPacingForecast';
 import { DailyAllowanceCard } from './DailyAllowanceCard';
 import { CategoryBreakdown } from './CategoryBreakdown';
 import { RecentTransactions } from './RecentTransactions';
@@ -85,7 +86,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         commitments={commitments}
       />
 
-      {/* 4. Safe Daily Allowance + Instant Decision Affordability Checker */}
+      {/* 4. Budget Pace & Month-End Forecast Visualizer */}
+      <BudgetPacingForecast
+        summary={summary}
+      />
+
+      {/* 5. Safe Daily Allowance + Instant Decision Affordability Checker */}
       <DailyAllowanceCard
         summary={summary}
         onOpenFullSimulator={onOpenSimulator}

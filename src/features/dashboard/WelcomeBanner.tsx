@@ -66,12 +66,12 @@ export const WelcomeBanner: React.FC<WelcomeBannerProps> = ({
         </div>
 
         {/* Quick Context Metric Pills */}
-        <div className="shrink-0 flex flex-row sm:flex-row lg:flex-col gap-3 justify-start sm:justify-end flex-wrap">
-          <div className="bg-zinc-950/80 border border-zinc-800 rounded-xl px-4 py-3 flex items-center gap-3 min-w-42.5">
+        <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <div className="bg-zinc-950/80 border border-zinc-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 flex items-center gap-3 w-full sm:w-auto min-w-0 sm:min-w-42.5">
             <div className="w-9 h-9 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-accent-lime shrink-0">
               <ArrowUpRight className="w-5 h-5" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="text-[11px] font-mono uppercase text-zinc-400">Daily Safe Limit</div>
               <div className="text-base sm:text-lg font-bold text-accent-lime font-mono tabular-nums">
                 {formatINR(summary.dailySafeAllowance)} <span className="text-[11px] font-normal text-zinc-500">/ day</span>
@@ -79,11 +79,11 @@ export const WelcomeBanner: React.FC<WelcomeBannerProps> = ({
             </div>
           </div>
 
-          <div className="bg-zinc-950/80 border border-zinc-800 rounded-xl px-4 py-3 flex items-center gap-3 min-w-42.5">
+          <div className="bg-zinc-950/80 border border-zinc-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 flex items-center gap-3 w-full sm:w-auto min-w-0 sm:min-w-42.5">
             <div className="w-9 h-9 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200 shrink-0">
               <PiggyBank className="w-5 h-5 text-emerald-400" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="text-[11px] font-mono uppercase text-zinc-400">Total Saved</div>
               <div className="text-base sm:text-lg font-bold text-zinc-100 font-mono tabular-nums">
                 {formatINR(summary.savingsLocked)}

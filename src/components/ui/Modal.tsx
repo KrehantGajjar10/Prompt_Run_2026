@@ -52,11 +52,11 @@ export const Modal: React.FC<ModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto"
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -64,10 +64,10 @@ export const Modal: React.FC<ModalProps> = ({
       {/* Modal Surface */}
       <div
         ref={modalRef}
-        className={`relative w-full ${maxWidthStyles} bg-zinc-900 border border-zinc-700/80 rounded-2xl shadow-2xl shadow-black/60 z-10 flex flex-col max-h-[90vh] my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150`}
+        className={`relative w-full ${maxWidthStyles} bg-zinc-900 border border-zinc-700/80 rounded-2xl shadow-2xl shadow-black/80 z-10 flex flex-col max-h-[calc(100dvh-1.5rem)] my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150`}
       >
         {/* Header */}
-        <div className="flex items-start justify-between p-4 sm:p-5 border-b border-zinc-800">
+        <div className="flex items-start justify-between p-3.5 sm:p-5 border-b border-zinc-800 shrink-0">
           <div>
             <h2 id="modal-title" className="text-base sm:text-lg font-bold text-zinc-100 tracking-tight">
               {title}
@@ -85,7 +85,7 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
 
         {/* Content body */}
-        <div className="p-4 sm:p-5 overflow-y-auto text-sm text-zinc-200 space-y-4">
+        <div className="p-3.5 sm:p-5 overflow-y-auto text-sm text-zinc-200 space-y-4 overscroll-contain">
           {children}
         </div>
       </div>

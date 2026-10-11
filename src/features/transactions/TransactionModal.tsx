@@ -263,11 +263,22 @@ const TransactionFormInner: React.FC<FormInnerProps> = ({
       )}
 
       {/* Action Buttons */}
-      <div className="pt-2 border-t border-zinc-800 flex items-center justify-end gap-2.5">
-        <Button type="button" variant="ghost" size="sm" onClick={onClose}>
+      <div className="pt-2 border-t border-zinc-800 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-2.5">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={onClose}
+          className="w-full sm:w-auto justify-center"
+        >
           Cancel
         </Button>
-        <Button type="submit" variant="primary" size="sm">
+        <Button
+          type="submit"
+          variant="primary"
+          size="sm"
+          className="w-full sm:w-auto justify-center"
+        >
           {initialData ? 'Save Changes' : type === 'income' ? 'Record Income' : 'Record Expense'}
         </Button>
       </div>

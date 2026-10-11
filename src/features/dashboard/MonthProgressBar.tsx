@@ -31,15 +31,15 @@ export const MonthProgressBar: React.FC<MonthProgressBarProps> = ({ summary, com
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-mono">
+        <div className="flex items-center gap-2 sm:gap-4 text-xs font-mono flex-wrap">
           <div className="flex items-center gap-1.5 text-zinc-300">
-            <Clock className="w-3.5 h-3.5 text-accent-lime" />
+            <Clock className="w-3.5 h-3.5 text-accent-lime shrink-0" />
             <span>Time Elapsed: </span>
             <strong className="text-zinc-100 tabular-nums">
               {summary.monthElapsedPercent}%
             </strong>
           </div>
-          <span className="text-zinc-700">•</span>
+          <span className="text-zinc-700 hidden sm:inline">•</span>
           <div className="flex items-center gap-1.5 text-zinc-300">
             <span>Budget Spent: </span>
             <strong
@@ -56,14 +56,23 @@ export const MonthProgressBar: React.FC<MonthProgressBarProps> = ({ summary, com
       </div>
 
       {/* Main 30-Day Segmented Progress Bar */}
-      <div className="relative pt-2 pb-5">
+      <div className="relative pt-2 pb-2 sm:pb-5">
         <ProgressBar
           value={summary.monthElapsedPercent}
           colorVariant="lime"
           size="md"
         />
 
-        {/* Dynamic milestone markers */}
+        {/* Mobile simple markers row (< sm) */}
+        <div className="flex sm:hidden items-center justify-between mt-1.5 text-[10px] font-mono text-zinc-500">
+          <span>Day 1</span>
+          <span className="text-accent-lime font-bold">
+            Day {summary.currentDay} (Today)
+          </span>
+          <span>Day 30</span>
+        </div>
+
+        {/* Dynamic milestone markers (sm and up) */}
         <div className="relative w-full mt-2 hidden sm:block h-6">
           {/* Day 1 marker */}
           <div className="absolute left-0 -translate-x-1/2 flex flex-col items-center">

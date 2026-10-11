@@ -168,7 +168,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="mt-5 pt-3.5 border-t border-zinc-800 flex items-center justify-between gap-2">
+              <div className="mt-5 pt-3.5 border-t border-zinc-800 flex items-center justify-between gap-2 flex-wrap">
                 <Button
                   variant="primary"
                   size="sm"
@@ -185,6 +185,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
                     onClick={() => onEditGoal(goal)}
                     className="p-1.5 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 cursor-pointer"
                     title="Edit goal details"
+                    aria-label={`Edit ${goal.name}`}
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
@@ -193,6 +194,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
                     onClick={() => finance.deleteSavingsGoal(goal.id)}
                     className="p-1.5 rounded hover:bg-zinc-800 text-zinc-400 hover:text-red-400 cursor-pointer"
                     title="Remove goal (releases locked funds back to available balance)"
+                    aria-label={`Delete ${goal.name}`}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

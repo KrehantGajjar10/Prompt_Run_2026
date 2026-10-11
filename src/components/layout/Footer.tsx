@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex flex-col items-center sm:items-start gap-1">
           <p className="font-mono text-zinc-300">
-            Br  oke But Functional — Digital Survival Ledger
+            Broke But Functional — Digital Survival Ledger
           </p>
           <p className="text-[11px] text-zinc-500 max-w-lg text-center sm:text-left">
             Strict Non-Duplicative Formula: Starting Budget (₹10k) + Inflows = Spent + Reserved Bills + Locked Savings + Available Balance.

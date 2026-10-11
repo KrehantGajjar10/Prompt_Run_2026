@@ -30,8 +30,14 @@ export const ConfirmResetModal: React.FC<ConfirmResetModalProps> = ({
           <p className="text-xs leading-relaxed text-zinc-300">{description}</p>
         </div>
 
-        <div className="pt-2 border-t border-zinc-800 flex items-center justify-end gap-2.5">
-          <Button type="button" variant="ghost" size="sm" onClick={onClose}>
+        <div className="pt-2 border-t border-zinc-800 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-2.5">
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="w-full sm:w-auto justify-center"
+          >
             Cancel
           </Button>
           <Button
@@ -43,6 +49,7 @@ export const ConfirmResetModal: React.FC<ConfirmResetModalProps> = ({
               onClose();
             }}
             icon={<RotateCcw className="w-3.5 h-3.5" />}
+            className="w-full sm:w-auto justify-center"
           >
             {confirmLabel}
           </Button>

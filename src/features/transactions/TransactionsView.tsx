@@ -183,12 +183,12 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
           </div>
         </div>
 
-        {/* Dropdown Filters & Sorting */}
-        <div className="flex flex-wrap items-center gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
+        {/* Dropdown Filters & Sorting Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5 pt-2 border-t border-zinc-800/80 text-xs">
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value as TransactionCategory | 'all')}
-            className="bg-zinc-950 border border-zinc-800 rounded px-2.5 py-1 text-xs text-zinc-300 focus:outline-none focus:border-accent-lime"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded px-2.5 py-1.5 text-xs text-zinc-300 focus:outline-none focus:border-accent-lime font-mono"
           >
             <option value="all">All Categories</option>
             {Object.entries(CATEGORIES).map(([catId, meta]) => (
@@ -201,7 +201,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
           <select
             value={paymentFilter}
             onChange={(e) => setPaymentFilter(e.target.value as PaymentMethod | 'all')}
-            className="bg-zinc-950 border border-zinc-800 rounded px-2.5 py-1 text-xs text-zinc-300 focus:outline-none focus:border-accent-lime"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded px-2.5 py-1.5 text-xs text-zinc-300 focus:outline-none focus:border-accent-lime font-mono"
           >
             <option value="all">All Payment Methods</option>
             <option value="UPI (GPay)">UPI (GPay)</option>
@@ -215,7 +215,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="bg-zinc-950 border border-zinc-800 rounded px-2.5 py-1 text-xs text-zinc-300 focus:outline-none focus:border-accent-lime ml-auto font-mono"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded px-2.5 py-1.5 text-xs text-zinc-300 focus:outline-none focus:border-accent-lime font-mono"
           >
             <option value="date_desc">Latest Day First</option>
             <option value="date_asc">Earliest Day First</option>
@@ -243,9 +243,9 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
               return (
                 <div
                   key={tx.id}
-                  className="p-3.5 sm:p-4 flex items-center justify-between gap-3 hover:bg-zinc-800/30 transition-colors group"
+                  className="p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-zinc-800/30 transition-colors group"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex items-start sm:items-center gap-3 min-w-0">
                     <div
                       className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 border ${
                         isIncome
@@ -260,9 +260,9 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
                       )}
                     </div>
 
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs sm:text-sm font-semibold text-zinc-100 truncate">
+                        <span className="text-xs sm:text-sm font-semibold text-zinc-100 wrap-break-word">
                           {tx.title}
                         </span>
                         {tx.relatedCommitmentId && (
@@ -270,30 +270,40 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
                             Bill Paid
                           </span>
                         )}
+                        <span
+                          className="sm:hidden text-[10px] font-mono px-1.5 py-0.2 rounded border"
+                          style={{
+                            backgroundColor: meta?.badgeBg || 'rgba(255,255,255,0.05)',
+                            borderColor: meta?.colorHex ? `${meta.colorHex}30` : '#3f3f46',
+                            color: meta?.badgeText || '#d4d4d8',
+                          }}
+                        >
+                          {meta?.shortName || tx.category}
+                        </span>
                       </div>
-                      <div className="text-[11px] text-zinc-500 font-mono mt-0.5 flex items-center gap-2 flex-wrap">
+                      <div className="text-[11px] text-zinc-500 font-mono mt-0.5 flex items-center gap-1.5 flex-wrap">
                         <span>{tx.date} • {tx.time}</span>
                         <span>•</span>
                         <span className="text-zinc-400">{tx.paymentMethod}</span>
                         {tx.merchant && (
                           <>
                             <span>•</span>
-                            <span className="text-zinc-400">{tx.merchant}</span>
+                            <span className="text-zinc-400 truncate max-w-30 sm:max-w-none">{tx.merchant}</span>
                           </>
                         )}
                         {tx.description && (
                           <>
                             <span>•</span>
-                            <span className="text-zinc-500 italic truncate max-w-xs">{tx.description}</span>
+                            <span className="text-zinc-500 italic truncate max-w-40 sm:max-w-xs">{tx.description}</span>
                           </>
                         )}
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
+                  <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-zinc-800/80">
                     <span
-                      className="hidden md:inline-block text-[10px] font-mono px-2 py-0.5 rounded border"
+                      className="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded border"
                       style={{
                         backgroundColor: meta?.badgeBg || 'rgba(255,255,255,0.05)',
                         borderColor: meta?.colorHex ? `${meta.colorHex}30` : '#3f3f46',
@@ -303,7 +313,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
                       {meta?.shortName || tx.category}
                     </span>
 
-                    <div className="text-right">
+                    <div className="text-left sm:text-right">
                       <div
                         className={`text-sm sm:text-base font-bold font-mono tabular-nums ${
                           isIncome ? 'text-accent-lime' : 'text-zinc-100'
@@ -317,7 +327,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
                     </div>
 
                     {/* Edit & Delete actions */}
-                    <div className="flex items-center gap-1 opacity-80 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-1">
                       <button
                         type="button"
                         onClick={() => onEditTransaction(tx)}

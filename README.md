@@ -43,7 +43,10 @@ Inspired by the dark-mode aesthetic of *Life in Receipts* (`https://web-rush-pro
 
 ### Overview & Dashboard
 - **Financial KPI Cards**: Instant visibility into Total Funds, Safe Available Balance, Actual Spent, and Ring-Fenced Reserves.
-- **Month & Day Timeline**: Visual timeline indicating current day (Day 12 of 30), elapsed percentage, and remaining days.
+- **30-Day Survival Timeline**: Visual day-by-day progress tracker with dynamic bill due markers and today's milestone.
+- **Budget Pace Comparison**: Dual calibrated progress bars comparing proportion of days elapsed with proportion of budget consumed, with headroom calculation and pacing status verdict.
+- **Proportional Funds Allocation Runway**: Stacked visual breakdown dividing total funds into Spent, Reserved Mandatory Bills, Locked Savings, and Discretionary Buffer.
+- **Month-End Forecast Engine**: Day 30 projection modeling actual historical spending vs. future run-rate across three transparent scenarios (Current Run-Rate, Safe Daily Quota, and Baseline Pace) with documented assumptions.
 - **Live Safe Daily Allowance**: Prominent metric displaying safe spending per day alongside target vs. actual burn rate.
 - **Spending by Category**: Detailed distribution breakdown by category with rupee values, percentages, and visual bars.
 - **Recent Transactions & Upcoming Bills**: Fast at-a-glance cards with quick-action triggers for instant adjustments.
@@ -54,11 +57,13 @@ Inspired by the dark-mode aesthetic of *Life in Receipts* (`https://web-rush-pro
 - Comprehensive search and filtering by transaction type, category, and payment method.
 - Multi-criteria sorting (by latest date, earliest date, highest amount, lowest amount).
 - Built-in validation guarding against empty titles, zero amounts, and invalid inputs.
+- Responsive mobile list layout with touch targets and clear data hierarchy.
 
 ### Bills & Recurring Subscriptions
 - Manage recurring payments (Wi-Fi, OTT subscriptions, room rent, electricity).
 - Status toggles to **Mark as Paid** (instant non-duplicative conversion to expense) or **Cancel Subscription** (immediate fund release).
 - Detailed metadata including provider, due date, auto-debit indicator, and billing notes.
+- Mobile-optimized action buttons with flexible wrapping.
 
 ### Savings Goals & Transfers
 - Goal management with target amounts, current progress, priority levels, and category badges.
@@ -69,8 +74,10 @@ Inspired by the dark-mode aesthetic of *Life in Receipts* (`https://web-rush-pro
 - Immediate before-and-after side-by-side comparison:
   - Projected Safe Available Balance
   - Projected Daily Safe Allowance
-  - Net Change and Risk Level (Safe, Caution, Danger / Deficit)
-- Built-in presets for common Gen Z scenarios (Weekend party, Swiggy binge, cancelling gym, client freelance gig).
+  - Reserved Bills Pool & Locked Savings Cushion
+  - Projected Month-End Net Balance & Net Runway Impact
+  - Risk Level Verdict (Safe, Caution, Danger / Deficit)
+- Built-in presets for common Gen Z scenarios (Weekend party, Swiggy binge, extra savings, cancelling subscriptions).
 - One-click **Apply Decision to Ledger** action to commit the scenario directly to the live state, or **Discard**.
 
 ### Local Persistence & Demo Reset
@@ -79,7 +86,20 @@ Inspired by the dark-mode aesthetic of *Life in Receipts* (`https://web-rush-pro
 
 ---
 
-## 5. Technology Stack
+## 5. Responsive Design & Viewport Targets
+
+The application is engineered with fluid containers, content-driven breakpoints, and touch accessibility tested across:
+- **Small mobile**: 320 × 568 (iPhone SE)
+- **Standard mobile**: 375 × 667 (iPhone 8)
+- **Large mobile**: 430 × 932 (iPhone 14/15 Pro Max)
+- **Tablet**: 768 × 1024 (iPad Portrait)
+- **Laptop**: 1024 × 768 (Small laptop / iPad Landscape)
+- **Desktop**: 1440 × 900 (MacBook Pro / Desktop)
+- **Wide desktop**: 1920 × 1080 (Full HD Monitor)
+
+---
+
+## 6. Technology Stack
 
 - **Framework**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - **Bundler & Dev Server**: [Vite 6](https://vitejs.dev/)
@@ -89,7 +109,7 @@ Inspired by the dark-mode aesthetic of *Life in Receipts* (`https://web-rush-pro
 
 ---
 
-## 6. Getting Started
+## 7. Getting Started
 
 ### Prerequisites
 - Node.js 18+ (Node.js 20+ recommended)

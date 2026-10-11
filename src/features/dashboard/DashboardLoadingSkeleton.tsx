@@ -44,6 +44,21 @@ export const DashboardLoadingSkeleton: React.FC = () => {
         </div>
       </Card>
 
+      {/* Pacing & Forecast Skeleton */}
+      <Card variant="default" className="p-5 space-y-4">
+        <div className="flex justify-between">
+          <Skeleton className="h-4 w-52" />
+          <Skeleton className="h-4 w-28" />
+        </div>
+        <Skeleton className="h-20 w-full rounded-xl" />
+        <Skeleton className="h-3.5 w-full rounded-full" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <Skeleton className="h-16 w-full rounded-lg" />
+          <Skeleton className="h-16 w-full rounded-lg" />
+          <Skeleton className="h-16 w-full rounded-lg" />
+        </div>
+      </Card>
+
       {/* Allowance & Calculator Skeleton */}
       <Card variant="default" className="p-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

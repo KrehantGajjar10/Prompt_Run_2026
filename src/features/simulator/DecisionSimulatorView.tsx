@@ -589,6 +589,51 @@ export const DecisionSimulatorView: React.FC = () => {
                     </div>
                   </div>
                 </Card>
+
+                {/* Projected Month-End Net Balance Comparison */}
+                <Card variant="subtle" className="p-3.5 flex flex-col justify-between sm:col-span-2">
+                  <div className="text-[11px] font-mono uppercase text-zinc-400 mb-1">
+                    Projected Month-End Net Balance
+                  </div>
+                  <div className="flex items-baseline justify-between">
+                    <div>
+                      <div className="text-xs text-zinc-500 font-mono">Before</div>
+                      <div className="text-sm sm:text-base font-bold text-zinc-300 font-mono tabular-nums">
+                        {simulationResult.before.projectedMonthEndBalance > 0 ? '+' : ''}
+                        {formatINR(simulationResult.before.projectedMonthEndBalance)}
+                      </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-zinc-600 shrink-0" />
+                    <div className="text-right">
+                      <div className="text-xs text-zinc-500 font-mono">Simulated</div>
+                      <div
+                        className={`text-sm sm:text-base font-bold font-mono tabular-nums ${
+                          simulationResult.after.projectedMonthEndBalance < 0
+                            ? 'text-red-400'
+                            : 'text-accent-lime'
+                        }`}
+                      >
+                        {simulationResult.after.projectedMonthEndBalance > 0 ? '+' : ''}
+                        {formatINR(simulationResult.after.projectedMonthEndBalance)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-[11px] font-mono text-zinc-400 border-t border-zinc-800 pt-1.5 flex justify-between">
+                    <span>Net Runway Impact:</span>
+                    <span
+                      className={`font-semibold tabular-nums ${
+                        simulationResult.diff.projectedMonthEnd < 0
+                          ? 'text-red-400'
+                          : simulationResult.diff.projectedMonthEnd > 0
+                          ? 'text-emerald-400'
+                          : 'text-zinc-400'
+                      }`}
+                    >
+                      {simulationResult.diff.projectedMonthEnd >= 0 ? '+' : ''}
+                      {formatINR(simulationResult.diff.projectedMonthEnd)}
+                    </span>
+                  </div>
+                </Card>
               </div>
 
               {/* Action Bar */}
@@ -596,12 +641,13 @@ export const DecisionSimulatorView: React.FC = () => {
                 <div className="text-xs text-zinc-400 font-mono text-center sm:text-left">
                   Ready to make this real? Applying will record this change in your active ledger.
                 </div>
-                <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 w-full sm:w-auto">
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
                     onClick={handleDiscard}
+                    className="w-full sm:w-auto justify-center"
                   >
                     Discard
                   </Button>
@@ -612,6 +658,7 @@ export const DecisionSimulatorView: React.FC = () => {
                     onClick={handleApplyDecision}
                     icon={<CheckCircle2 className="w-4 h-4" />}
                     disabled={simulationResult.hasShortfall}
+                    className="w-full sm:w-auto justify-center"
                   >
                     Apply Decision to Ledger
                   </Button>

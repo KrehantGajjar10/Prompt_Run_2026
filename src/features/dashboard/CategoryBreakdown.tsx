@@ -128,8 +128,8 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
               key={item.category}
               className="p-3 rounded-lg bg-zinc-950/70 border border-zinc-800/80 hover:border-zinc-700 transition-colors"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2.5">
+              <div className="flex items-center justify-between mb-2 gap-2">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <div
                     className="p-1.5 rounded-lg shrink-0 border border-zinc-800"
                     style={{
@@ -139,8 +139,8 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
                   >
                     {getCategoryIcon(item.category)}
                   </div>
-                  <div>
-                    <div className="text-xs font-semibold text-zinc-100">
+                  <div className="min-w-0">
+                    <div className="text-xs font-semibold text-zinc-100 truncate">
                       {meta?.name || item.category}
                     </div>
                     <div className="text-[11px] text-zinc-500 font-mono">
@@ -149,7 +149,7 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-right shrink-0">
                   <div className="text-xs font-bold text-zinc-100 font-mono tabular-nums">
                     {formatINR(item.totalSpent)}
                   </div>

@@ -152,12 +152,12 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
             return (
               <div
                 key={tx.id}
-                className="py-3 flex items-center justify-between gap-3 hover:bg-zinc-800/30 -mx-2 px-2 rounded-lg transition-colors group"
+                className="py-2.5 sm:py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 hover:bg-zinc-800/30 -mx-2 px-2 rounded-lg transition-colors group"
               >
                 {/* Left: Info */}
-                <div className="flex items-center gap-3 min-w-0">
+                <div className="flex items-start sm:items-center gap-2.5 sm:gap-3 min-w-0">
                   <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border mt-0.5 sm:mt-0 ${
                       isIncome
                         ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                         : 'bg-zinc-800 text-zinc-300 border-zinc-700/60'
@@ -170,9 +170,9 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                     )}
                   </div>
 
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs font-semibold text-zinc-100 truncate">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                      <span className="text-xs sm:text-sm font-semibold text-zinc-100 wrap-break-word">
                         {tx.title}
                       </span>
                       {isToday && (
@@ -180,16 +180,26 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                           Today
                         </span>
                       )}
+                      <span
+                        className="sm:hidden text-[10px] font-mono px-1.5 py-0.2 rounded border"
+                        style={{
+                          backgroundColor: meta?.badgeBg || 'rgba(255,255,255,0.05)',
+                          borderColor: meta?.colorHex ? `${meta.colorHex}30` : '#3f3f46',
+                          color: meta?.badgeText || '#d4d4d8',
+                        }}
+                      >
+                        {meta?.shortName || tx.category}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-2 mt-0.5 text-[11px] text-zinc-500 flex-wrap font-mono">
-                      <span>{tx.date} • {tx.time}</span>
+                    <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-zinc-500 flex-wrap font-mono">
+                      <span>{tx.date}</span>
                       <span>•</span>
                       <span className="text-zinc-400">{tx.paymentMethod}</span>
                       {tx.merchant && (
                         <>
                           <span>•</span>
-                          <span className="text-zinc-400 truncate">{tx.merchant}</span>
+                          <span className="text-zinc-400 truncate max-w-30 sm:max-w-none">{tx.merchant}</span>
                         </>
                       )}
                     </div>
@@ -197,7 +207,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                 </div>
 
                 {/* Right: Category badge + Amount + Actions */}
-                <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-1.5 sm:pt-0 border-t sm:border-t-0 border-zinc-800/80">
                   <span
                     className="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded border"
                     style={{
@@ -209,7 +219,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                     {meta?.shortName || tx.category}
                   </span>
 
-                  <div className="text-right">
+                  <div className="text-left sm:text-right">
                     <div
                       className={`text-xs sm:text-sm font-bold font-mono tabular-nums ${
                         isIncome ? 'text-accent-lime' : 'text-zinc-100'
@@ -218,17 +228,17 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                       {isIncome ? '+' : '-'}{formatINR(tx.amount)}
                     </div>
                     <div className="text-[10px] text-zinc-500 font-mono">
-                      Day {tx.day}
+                      Day {tx.day} of 30
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-1 opacity-80 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-1">
                     {onEditTransaction && (
                       <button
                         type="button"
                         onClick={() => onEditTransaction(tx)}
-                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 cursor-pointer"
+                        className="p-1.5 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 cursor-pointer"
                         title="Edit transaction"
                         aria-label={`Edit ${tx.title}`}
                       >
@@ -239,7 +249,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                       <button
                         type="button"
                         onClick={() => onDeleteTransaction(tx.id)}
-                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-red-400 cursor-pointer"
+                        className="p-1.5 rounded hover:bg-zinc-800 text-zinc-400 hover:text-red-400 cursor-pointer"
                         title="Delete transaction"
                         aria-label={`Delete ${tx.title}`}
                       >
