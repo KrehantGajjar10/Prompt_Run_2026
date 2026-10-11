@@ -62,7 +62,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
           <div className="text-2xl font-bold text-accent-lime font-mono tabular-nums mt-1">
             {formatINR(totalSaved)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             Across {finance.savingsGoals.length} target goal{finance.savingsGoals.length === 1 ? '' : 's'}
           </span>
         </Card>
@@ -72,7 +72,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
           <div className="text-2xl font-bold text-zinc-100 font-mono tabular-nums mt-1">
             {formatINR(totalTarget)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             {Math.round(totalPercent)}% of target funded
           </span>
         </Card>
@@ -82,7 +82,7 @@ export const SavingsView: React.FC<SavingsViewProps> = ({
           <div className="text-2xl font-bold text-zinc-300 font-mono tabular-nums mt-1">
             {formatINR(finance.summary.availableBalance)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             Remaining discretionary cash
           </span>
         </Card>

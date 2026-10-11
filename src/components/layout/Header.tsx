@@ -106,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
               type="button"
               onClick={onOpenResetModal}
               title="Reset state to pristine demo dataset"
-              className="ml-1.5 p-1.5 rounded text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 transition-colors cursor-pointer"
+              className="ml-1.5 p-1.5 rounded text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 transition-colors cursor-pointer"
               aria-label="Reset simulation data"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
                   setMobileMenuOpen(false);
                   onOpenResetModal();
                 }}
-                className="text-xs font-mono text-zinc-500 hover:text-zinc-300 flex items-center gap-1.5 py-1"
+                className="text-xs font-mono text-zinc-400 hover:text-zinc-200 flex items-center gap-1.5 py-1"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 Reset Demo Data

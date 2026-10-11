@@ -68,20 +68,20 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
         {/* Quick Add Button & Search */}
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <div className="relative flex-1 sm:w-56">
-            <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search transactions"
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-8 pr-8 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-8 pr-8 py-1.5 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-200 cursor-pointer"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-200 cursor-pointer"
                 aria-label="Clear search"
               >
                 <X className="w-3 h-3" />
@@ -103,7 +103,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
 
       {/* Category Filter Pills */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-none text-xs">
-        <Filter className="w-3.5 h-3.5 text-zinc-500 shrink-0 mr-1 hidden sm:inline" />
+        <Filter className="w-3.5 h-3.5 text-zinc-400 shrink-0 mr-1 hidden sm:inline" />
         {categoriesList.map((item) => (
           <button
             key={item.id}
@@ -192,14 +192,14 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-zinc-500 flex-wrap font-mono">
+                    <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-zinc-400 flex-wrap font-mono">
                       <span>{tx.date}</span>
                       <span>•</span>
-                      <span className="text-zinc-400">{tx.paymentMethod}</span>
+                      <span className="text-zinc-300">{tx.paymentMethod}</span>
                       {tx.merchant && (
                         <>
                           <span>•</span>
-                          <span className="text-zinc-400 truncate max-w-30 sm:max-w-none">{tx.merchant}</span>
+                          <span className="text-zinc-300 truncate max-w-30 sm:max-w-none">{tx.merchant}</span>
                         </>
                       )}
                     </div>
@@ -227,7 +227,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                     >
                       {isIncome ? '+' : '-'}{formatINR(tx.amount)}
                     </div>
-                    <div className="text-[10px] text-zinc-500 font-mono">
+                    <div className="text-[10px] text-zinc-400 font-mono">
                       Day {tx.day} of 30
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
 
       {transactions.length > 10 && (
         <div className="mt-3 pt-3 border-t border-zinc-800 text-center">
-          <span className="text-xs font-mono text-zinc-500">
+          <span className="text-xs font-mono text-zinc-400">
             Showing latest 10 of {transactions.length} records.
           </span>
         </div>

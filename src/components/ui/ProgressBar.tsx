@@ -51,7 +51,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         <div className="flex items-center justify-between text-xs mb-1.5 text-zinc-400">
           <span className="font-medium text-zinc-300">{label}</span>
           <div className="flex items-center gap-2">
-            {sublabel && <span className="text-zinc-500 font-mono text-[11px]">{sublabel}</span>}
+            {sublabel && <span className="text-zinc-400 font-mono text-[11px]">{sublabel}</span>}
             {showPercent && (
               <span className="font-semibold text-zinc-100 font-mono text-xs tabular-nums">
                 {Math.round(clampedValue)}%

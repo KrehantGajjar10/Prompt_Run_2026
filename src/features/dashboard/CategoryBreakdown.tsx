@@ -47,7 +47,7 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
             Spending by Category
           </h3>
         </div>
-        <div className="text-center py-8 text-zinc-500 text-xs font-mono">
+        <div className="text-center py-8 text-zinc-400 text-xs font-mono">
           No expenses recorded yet. Your budget is completely untouched!
         </div>
       </Card>
@@ -108,7 +108,7 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
                 <span className="text-zinc-300 font-medium text-xs">
                   {meta?.shortName || item.category}
                 </span>
-                <span className="text-zinc-500 font-mono text-[11px] tabular-nums">
+                <span className="text-zinc-400 font-mono text-[11px] tabular-nums">
                   {Math.round(item.percentageOfTotalSpend)}%
                 </span>
               </div>
@@ -143,7 +143,7 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
                     <div className="text-xs font-semibold text-zinc-100 truncate">
                       {meta?.name || item.category}
                     </div>
-                    <div className="text-[11px] text-zinc-500 font-mono">
+                    <div className="text-[11px] text-zinc-400 font-mono">
                       {item.transactionCount} transaction{item.transactionCount === 1 ? '' : 's'}
                     </div>
                   </div>

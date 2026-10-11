@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
           <p className="font-mono text-zinc-300">
             Broke But Functional — Digital Survival Ledger
           </p>
-          <p className="text-[11px] text-zinc-500 max-w-lg text-center sm:text-left">
+          <p className="text-[11px] text-zinc-400 max-w-lg text-center sm:text-left">
             Strict Non-Duplicative Formula: Starting Budget (₹10k) + Inflows = Spent + Reserved Bills + Locked Savings + Available Balance.
           </p>
         </div>

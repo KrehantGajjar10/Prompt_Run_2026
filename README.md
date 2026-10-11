@@ -1,145 +1,141 @@
 # Broke But Functional — Survive the Month
 
-> A high-performance, responsive personal-finance web application tailored for Gen Z users navigating a fixed **₹10,000 budget across 30 days**.
+A personal-finance web application designed to help users manage a ₹10,000 budget across 30 days, track spending and upcoming bills, protect savings, and evaluate financial decisions before applying them to their ledger.
 
 ---
 
-## 1. Product Overview
+## Overview
 
-Managing a strict ₹10,000 monthly budget requires making intentional spending choices every single day. **Broke But Functional** replaces generic spreadsheets with an interactive, deterministic survival ledger. It ring-fences non-negotiable upcoming commitments, safeguards savings goals, computes a live daily safe-to-spend allowance, and provides a sandbox Decision Simulator so users know the exact financial impact of a purchase before swiping or scanning UPI.
+Sticking to a strict ₹10,000 monthly budget is challenging when daily expenses, upcoming mandatory bills, subscriptions, savings targets, and sudden costs all compete for the same cash pool. Most budgeting tools fail because they only track past expenses rather than showing what is safe to spend today.
 
----
-
-## 2. Core Accounting Principles
-
-The application runs on a strict, mathematical non-duplicative accounting engine:
-
-$$\text{Total Funds} = \text{Starting Budget} + \text{Inflows} = \text{Spent} + \text{Reserved Bills} + \text{Locked Savings} + \text{Available Balance}$$
-
-### Key Rules:
-1. **Starting Baseline**: Default starting budget of ₹10,000 over 30 days (baseline timeline starts on Day 12 with 19 days remaining).
-2. **Safe Available Balance**: Calculated as `Total Funds - (Total Spent + Reserved Commitments + Locked Savings)`. Unreserved money is the only money safe for discretionary spending.
-3. **Daily Safe Allowance**: Derived as $\max(0, \text{Available Balance}) / \text{Days Remaining}$. This dynamically recalculates every time an expense, income, bill payment, or savings transfer is registered.
-4. **Commitment Lifecycle (Zero Double-Counting)**:
-   - *Reserved*: An upcoming bill is held in reserve and deducted from safe available balance.
-   - *Marked as Paid*: The bill transitions to `paid`, creating a recorded transaction under the bill's category. The reservation is simultaneously released so the amount is never deducted twice.
-   - *Cancelled*: Cancelling an upcoming commitment immediately releases its reserved funds back to the user's available balance and boosts the daily allowance.
-5. **Savings Discipline**: Savings are treated as owned assets ring-fenced from daily spending. Depositing money locks it away from the daily allowance; withdrawing returns it to the liquid available pool.
+**Broke But Functional** centers on financial clarity and forward planning. Users can instantly assess their true available balance, understand their safe daily spending limit, and test potential purchases in a real-time simulator before committing their money.
 
 ---
 
-## 3. Visual Identity & Design System
+## Key Features
 
-Inspired by the dark-mode aesthetic of *Life in Receipts* (`https://web-rush-project.vercel.app/`):
-- **Base Canvas**: Near-black zinc foundation (`#09090b` / `zinc-950`).
-- **Surfaces**: Layered charcoal containers (`#121215`, `#18181b` / `zinc-900`) with subtle neutral borders (`zinc-800` / `zinc-700/60`).
-- **Primary Accent**: Energetic lime green (`#bef264` / `accent-lime`) reserved for financial KPIs, active navigation states, primary buttons, and positive indicators.
-- **Semantic Colors**: Reserved emerald for savings/income (`#34d399`), amber for financial caution (`#fbbf24`), and red for budget deficits or destructive actions (`#f87171`).
-- **Typography & Layout**: Clean typography with tabular numerals for currency (`tabular-nums font-mono`) and fluid responsive layouts adapted for mobile, tablet, and wide desktop screens.
-
----
-
-## 4. Key Features & Modules
-
-### Overview & Dashboard
-- **Financial KPI Cards**: Instant visibility into Total Funds, Safe Available Balance, Actual Spent, and Ring-Fenced Reserves.
-- **30-Day Survival Timeline**: Visual day-by-day progress tracker with dynamic bill due markers and today's milestone.
-- **Budget Pace Comparison**: Dual calibrated progress bars comparing proportion of days elapsed with proportion of budget consumed, with headroom calculation and pacing status verdict.
-- **Proportional Funds Allocation Runway**: Stacked visual breakdown dividing total funds into Spent, Reserved Mandatory Bills, Locked Savings, and Discretionary Buffer.
-- **Month-End Forecast Engine**: Day 30 projection modeling actual historical spending vs. future run-rate across three transparent scenarios (Current Run-Rate, Safe Daily Quota, and Baseline Pace) with documented assumptions.
-- **Live Safe Daily Allowance**: Prominent metric displaying safe spending per day alongside target vs. actual burn rate.
-- **Spending by Category**: Detailed distribution breakdown by category with rupee values, percentages, and visual bars.
-- **Recent Transactions & Upcoming Bills**: Fast at-a-glance cards with quick-action triggers for instant adjustments.
-
-### Transactions & Income Ledger
-- Full CRUD operations for expense and income records.
-- Support for Title, Amount, Category, Payment Method (UPI apps, cards, cash), Merchant, Date/Day, and Notes.
-- Comprehensive search and filtering by transaction type, category, and payment method.
-- Multi-criteria sorting (by latest date, earliest date, highest amount, lowest amount).
-- Built-in validation guarding against empty titles, zero amounts, and invalid inputs.
-- Responsive mobile list layout with touch targets and clear data hierarchy.
-
-### Bills & Recurring Subscriptions
-- Manage recurring payments (Wi-Fi, OTT subscriptions, room rent, electricity).
-- Status toggles to **Mark as Paid** (instant non-duplicative conversion to expense) or **Cancel Subscription** (immediate fund release).
-- Detailed metadata including provider, due date, auto-debit indicator, and billing notes.
-- Mobile-optimized action buttons with flexible wrapping.
-
-### Savings Goals & Transfers
-- Goal management with target amounts, current progress, priority levels, and category badges.
-- In-place deposit and withdrawal modal enabling transfers between liquid funds and savings reserves.
-
-### Decision Simulator ("Can I Afford This?")
-- Interactive sandbox allowing users to test hypothetical financial scenarios before logging them.
-- Immediate before-and-after side-by-side comparison:
-  - Projected Safe Available Balance
-  - Projected Daily Safe Allowance
-  - Reserved Bills Pool & Locked Savings Cushion
-  - Projected Month-End Net Balance & Net Runway Impact
-  - Risk Level Verdict (Safe, Caution, Danger / Deficit)
-- Built-in presets for common Gen Z scenarios (Weekend party, Swiggy binge, extra savings, cancelling subscriptions).
-- One-click **Apply Decision to Ledger** action to commit the scenario directly to the live state, or **Discard**.
-
-### Local Persistence & Demo Reset
-- Automated client-side persistence via `localStorage` with runtime schema validation.
-- Reset modal with confirmation prompt to safely restore baseline demo figures at any time.
+- **Financial Dashboard & Budget Overview**: Instant visibility into total budget, safe available balance, total spending, and ring-fenced funds.
+- **Safe Daily Allowance & Pacing**: Live calculation of daily safe spending limits alongside a 30-day timeline and budget pacing comparisons.
+- **Income & Expense Tracking**: Full transaction management with support for categories, payment methods (UPI, debit card, cash), dates, merchants, and notes.
+- **Category-Wise Spending Breakdown**: Visual breakdown and percentage distribution of expenses across categories (Food & Dining, Groceries, Transport, Utilities, Entertainment, Shopping, and Health).
+- **Upcoming Commitments & Subscriptions**: Dedicated tracker for bills and subscriptions with the ability to mark bills as paid or cancel subscriptions to release reserved funds.
+- **Savings Goals with Deposits & Withdrawals**: Ring-fence funds for target goals with flexible transfer controls to deposit from or withdraw back to the available balance.
+- **“Can I Afford This?” Decision Simulator**: Sandbox environment to test prospective expenses, bill payments, new commitments, or savings changes before making them.
+- **Before-and-After Comparisons & Forecasts**: Side-by-side analysis of how a decision alters daily allowances, available balances, and month-end financial projections.
+- **Persistent Local Data & Demo Reset**: Automatic state persistence in the browser, complete with a confirmation dialog to restore the clean demo dataset at any time.
 
 ---
 
-## 5. Responsive Design & Viewport Targets
+## How It Works
 
-The application is engineered with fluid containers, content-driven breakpoints, and touch accessibility tested across:
-- **Small mobile**: 320 × 568 (iPhone SE)
-- **Standard mobile**: 375 × 667 (iPhone 8)
-- **Large mobile**: 430 × 932 (iPhone 14/15 Pro Max)
-- **Tablet**: 768 × 1024 (iPad Portrait)
-- **Laptop**: 1024 × 768 (Small laptop / iPad Landscape)
-- **Desktop**: 1440 × 900 (MacBook Pro / Desktop)
-- **Wide desktop**: 1920 × 1080 (Full HD Monitor)
+1. **Review Financial Overview**: Check current available balance, reserved mandatory bills, locked savings, and today's safe daily spending limit on the dashboard.
+2. **Record Income and Expenses**: Log daily cash inflows or expenses with category, payment method, and merchant details.
+3. **Track Commitments and Savings**: Manage upcoming bills so funds are ring-fenced in advance, and allocate money toward designated savings goals.
+4. **Simulate a Decision**: Open the simulator to test a prospective purchase, emergency expense, or subscription change.
+5. **Review Impact and Apply**: Compare projected daily allowances and month-end balances before choosing to apply the decision directly to the ledger or discard it.
 
 ---
 
-## 6. Technology Stack
+## Technology Stack
 
-- **Framework**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- **Bundler & Dev Server**: [Vite 6](https://vitejs.dev/)
+- **Framework**: [React 19](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite 6](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Testing**: [Vitest](https://vitest.dev/)
 
 ---
 
-## 7. Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ (Node.js 20+ recommended)
-- npm or yarn
+
+- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
+- `npm` (bundled with Node.js)
 
 ### Installation
-```bash
-git clone <repository-url>
-cd broke-but-functional
-npm install
-```
 
-### Development Server
-```bash
-npm run dev
-```
-Open `http://localhost:5173` in your browser.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
 
-### Run Tests
-```bash
-npm test
-```
+2. Navigate into the project directory:
+   ```bash
+   cd broke-but-functional
+   ```
 
-### Linting
-```bash
-npm run lint
-```
+3. Install project dependencies:
+   ```bash
+   npm install
+   ```
 
-### Production Build
+4. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:5173`.
+
+---
+
+## Available Scripts
+
+- `npm run dev`: Starts the Vite development server with Hot Module Replacement (HMR).
+- `npm run build`: Type-checks TypeScript files and compiles an optimized production build into `dist/`.
+- `npm run lint`: Runs ESLint across project files to check for syntax and style issues.
+- `npm test`: Runs the Vitest test suite to verify financial calculation logic.
+- `npm run preview`: Starts a local web server to preview the built application from the `dist/` folder.
+
+---
+
+## Data and Privacy
+
+- **Local Storage**: All application data is stored purely on the client side using browser `localStorage` (`broke_but_functional_state_v1`).
+- **Device Isolation**: Data persists within the specific browser and device used; it is not sent to any external server or synchronized across devices.
+- **No Remote Backend**: There are no remote databases, third-party user tracking scripts, or authentication requirements.
+- **Demo State & Reset**: The application initializes with a realistic demo dataset. Users can reset back to this pristine state at any point using the reset button in the navigation bar.
+
+---
+
+## Design and Accessibility
+
+- **Theme**: Near-black and charcoal palette accented with purposeful lime green highlights for key financial indicators and active elements.
+- **Visual Hierarchy**: Structured layout utilizing clear typography, tabular numerals for currency figures, and readable contrast against dark surfaces.
+- **Responsive Layout**: Designed to adapt fluidly across mobile phones, tablets, laptops, and desktop screens.
+- **Keyboard Navigation**: Interactive buttons, modals, and input fields support standard keyboard navigation and clear focus rings.
+
+---
+
+## Production Build and Deployment
+
+### Creating and Previewing a Production Build
+
+To generate the production bundle:
 ```bash
 npm run build
 ```
-The optimized production bundle will be output to the `dist/` directory.
+
+To test the generated build locally:
+```bash
+npm run preview
+```
+
+### Deploying to Vercel
+
+The application is configured for deployment on [Vercel](https://vercel.com/):
+
+1. Import the repository into your Vercel account.
+2. Select **Vite** as the framework preset (or keep the default settings).
+3. Ensure the project settings specify:
+   - **Root Directory**: `.` (repository root)
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. Deploy the project. Once complete, copy and add your live production URL to the repository description.
+
+---
+
+## Project Status
+
+The core application is fully implemented, verified with passing unit tests and lint checks, and ready for use.

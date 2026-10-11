@@ -168,7 +168,7 @@ export const DecisionSimulatorView: React.FC = () => {
 
         {/* Quick Scenario Presets */}
         <div className="mt-4 pt-4 border-t border-zinc-800/80">
-          <span className="text-xs font-mono uppercase text-zinc-500 tracking-wider block mb-2">
+          <span className="text-xs font-mono uppercase text-zinc-400 tracking-wider block mb-2">
             Try a Realistic Scenario:
           </span>
           <div className="flex flex-wrap gap-2">
@@ -384,7 +384,7 @@ export const DecisionSimulatorView: React.FC = () => {
               <button
                 type="button"
                 onClick={handleDiscard}
-                className="text-zinc-500 hover:text-zinc-300 underline cursor-pointer"
+                className="text-zinc-400 hover:text-zinc-200 underline cursor-pointer"
               >
                 Clear
               </button>
@@ -451,7 +451,7 @@ export const DecisionSimulatorView: React.FC = () => {
                 <div className="mt-3 pt-3 border-t border-white/10 space-y-1.5 text-xs text-zinc-300 font-mono">
                   {simulationResult.consequences.map((c, i) => (
                     <div key={i} className="flex items-start gap-1.5">
-                      <span className="text-zinc-500">•</span>
+                      <span className="text-zinc-400">•</span>
                       <span>{c}</span>
                     </div>
                   ))}
@@ -467,14 +467,14 @@ export const DecisionSimulatorView: React.FC = () => {
                   </div>
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <div className="text-xs text-zinc-500 font-mono">Before</div>
+                      <div className="text-xs text-zinc-400 font-mono">Before</div>
                       <div className="text-base font-bold text-zinc-300 font-mono tabular-nums">
                         {formatINR(simulationResult.before.availableBalance)}
                       </div>
                     </div>
                     <ArrowRight className="w-4 h-4 text-zinc-600 shrink-0" />
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500 font-mono">Simulated</div>
+                      <div className="text-xs text-zinc-400 font-mono">Simulated</div>
                       <div
                         className={`text-base font-bold font-mono tabular-nums ${
                           simulationResult.after.availableBalance < 0
@@ -510,14 +510,14 @@ export const DecisionSimulatorView: React.FC = () => {
                   </div>
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <div className="text-xs text-zinc-500 font-mono">Before</div>
+                      <div className="text-xs text-zinc-400 font-mono">Before</div>
                       <div className="text-base font-bold text-zinc-300 font-mono tabular-nums">
                         {formatINR(simulationResult.before.dailySafeAllowance)}/d
                       </div>
                     </div>
                     <ArrowRight className="w-4 h-4 text-zinc-600 shrink-0" />
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500 font-mono">Simulated</div>
+                      <div className="text-xs text-zinc-400 font-mono">Simulated</div>
                       <div
                         className={`text-base font-bold font-mono tabular-nums ${
                           simulationResult.after.dailySafeAllowance < 100
@@ -553,14 +553,14 @@ export const DecisionSimulatorView: React.FC = () => {
                   </div>
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <div className="text-xs text-zinc-500 font-mono">Before</div>
+                      <div className="text-xs text-zinc-400 font-mono">Before</div>
                       <div className="text-sm font-bold text-zinc-300 font-mono tabular-nums">
                         {formatINR(simulationResult.before.reservedCommitments)}
                       </div>
                     </div>
                     <ArrowRight className="w-4 h-4 text-zinc-600 shrink-0" />
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500 font-mono">Simulated</div>
+                      <div className="text-xs text-zinc-400 font-mono">Simulated</div>
                       <div className="text-sm font-bold text-zinc-100 font-mono tabular-nums">
                         {formatINR(simulationResult.after.reservedCommitments)}
                       </div>
@@ -575,14 +575,14 @@ export const DecisionSimulatorView: React.FC = () => {
                   </div>
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <div className="text-xs text-zinc-500 font-mono">Before</div>
+                      <div className="text-xs text-zinc-400 font-mono">Before</div>
                       <div className="text-sm font-bold text-zinc-300 font-mono tabular-nums">
                         {formatINR(simulationResult.before.savingsLocked)}
                       </div>
                     </div>
                     <ArrowRight className="w-4 h-4 text-zinc-600 shrink-0" />
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500 font-mono">Simulated</div>
+                      <div className="text-xs text-zinc-400 font-mono">Simulated</div>
                       <div className="text-sm font-bold text-emerald-400 font-mono tabular-nums">
                         {formatINR(simulationResult.after.savingsLocked)}
                       </div>
@@ -597,7 +597,7 @@ export const DecisionSimulatorView: React.FC = () => {
                   </div>
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <div className="text-xs text-zinc-500 font-mono">Before</div>
+                      <div className="text-xs text-zinc-400 font-mono">Before</div>
                       <div className="text-sm sm:text-base font-bold text-zinc-300 font-mono tabular-nums">
                         {simulationResult.before.projectedMonthEndBalance > 0 ? '+' : ''}
                         {formatINR(simulationResult.before.projectedMonthEndBalance)}
@@ -605,7 +605,7 @@ export const DecisionSimulatorView: React.FC = () => {
                     </div>
                     <ArrowRight className="w-4 h-4 text-zinc-600 shrink-0" />
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500 font-mono">Simulated</div>
+                      <div className="text-xs text-zinc-400 font-mono">Simulated</div>
                       <div
                         className={`text-sm sm:text-base font-bold font-mono tabular-nums ${
                           simulationResult.after.projectedMonthEndBalance < 0

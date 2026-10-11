@@ -43,11 +43,11 @@ export const SavingsGoals: React.FC<SavingsGoalsProps> = ({
 
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5 font-mono text-xs">
-            <span className="text-zinc-500">Saved:</span>
+            <span className="text-zinc-400">Saved:</span>
             <span className="font-bold text-accent-lime tabular-nums">
               {formatINR(totalSaved)}
             </span>
-            <span className="text-zinc-500">/ {formatINR(totalTarget)}</span>
+            <span className="text-zinc-400">/ {formatINR(totalTarget)}</span>
           </div>
           {onOpenAddModal && (
             <Button
@@ -77,7 +77,7 @@ export const SavingsGoals: React.FC<SavingsGoalsProps> = ({
 
       {/* Goals Preview List */}
       {goals.length === 0 ? (
-        <div className="text-center py-6 text-xs text-zinc-500 font-mono">
+        <div className="text-center py-6 text-xs text-zinc-400 font-mono">
           No savings goals created yet.
         </div>
       ) : (
@@ -107,10 +107,10 @@ export const SavingsGoals: React.FC<SavingsGoalsProps> = ({
                     </Badge>
                   </div>
 
-                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5">
                     <div className="text-xs font-mono tabular-nums text-zinc-300">
                       <strong className="text-accent-lime">{formatINR(goal.currentAmount)}</strong>
-                      <span className="text-zinc-500"> / {formatINR(goal.targetAmount)}</span>
+                      <span className="text-zinc-400"> / {formatINR(goal.targetAmount)}</span>
                     </div>
 
                     {/* Deposit / Withdraw Action Button */}
@@ -130,7 +130,7 @@ export const SavingsGoals: React.FC<SavingsGoalsProps> = ({
                       <button
                         type="button"
                         onClick={() => onDeleteGoal(goal.id)}
-                        className="p-1 rounded text-zinc-500 hover:text-red-400 cursor-pointer"
+                        className="p-1 rounded text-zinc-400 hover:text-red-400 cursor-pointer"
                         title="Remove goal (releases locked funds)"
                         aria-label={`Delete ${goal.name}`}
                       >
@@ -146,9 +146,9 @@ export const SavingsGoals: React.FC<SavingsGoalsProps> = ({
                   size="sm"
                 />
 
-                <div className="mt-2 text-[11px] text-zinc-500 flex items-center justify-between font-mono">
+                <div className="mt-2 text-[11px] text-zinc-400 flex items-center justify-between font-mono">
                   <span>{goal.notes}</span>
-                  <span className="font-semibold text-zinc-400 tabular-nums">
+                  <span className="font-semibold text-zinc-300 tabular-nums">
                     {goalPercent}% reached
                   </span>
                 </div>

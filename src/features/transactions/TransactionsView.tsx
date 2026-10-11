@@ -95,7 +95,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
           <div className="text-2xl font-bold text-zinc-100 font-mono tabular-nums mt-1">
             {formatINR(totalExpense)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             {finance.transactions.filter((t) => t.type !== 'income').length} expense entries
           </span>
         </Card>
@@ -105,7 +105,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
           <div className="text-2xl font-bold text-accent-lime font-mono tabular-nums mt-1">
             +{formatINR(totalIncome)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             {finance.transactions.filter((t) => t.type === 'income').length} income deposits
           </span>
         </Card>
@@ -115,7 +115,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
           <div className="text-2xl font-bold text-zinc-100 font-mono tabular-nums mt-1">
             {formatINR(finance.summary.availableBalance)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             Discretionary pool remaining
           </span>
         </Card>
@@ -126,19 +126,19 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Search Box */}
           <div className="relative flex-1">
-            <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               placeholder="Search by title, description, or merchant..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-8 pr-8 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-8 pr-8 py-2 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
             />
             {search && (
               <button
                 type="button"
                 onClick={() => setSearch('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-200 cursor-pointer"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-200 cursor-pointer"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -281,20 +281,20 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
                           {meta?.shortName || tx.category}
                         </span>
                       </div>
-                      <div className="text-[11px] text-zinc-500 font-mono mt-0.5 flex items-center gap-1.5 flex-wrap">
+                      <div className="text-[11px] text-zinc-400 font-mono mt-0.5 flex items-center gap-1.5 flex-wrap">
                         <span>{tx.date} • {tx.time}</span>
                         <span>•</span>
-                        <span className="text-zinc-400">{tx.paymentMethod}</span>
+                        <span className="text-zinc-300">{tx.paymentMethod}</span>
                         {tx.merchant && (
                           <>
                             <span>•</span>
-                            <span className="text-zinc-400 truncate max-w-30 sm:max-w-none">{tx.merchant}</span>
+                            <span className="text-zinc-300 truncate max-w-30 sm:max-w-none">{tx.merchant}</span>
                           </>
                         )}
                         {tx.description && (
                           <>
                             <span>•</span>
-                            <span className="text-zinc-500 italic truncate max-w-40 sm:max-w-xs">{tx.description}</span>
+                            <span className="text-zinc-400 italic truncate max-w-40 sm:max-w-xs">{tx.description}</span>
                           </>
                         )}
                       </div>
@@ -321,7 +321,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
                       >
                         {isIncome ? '+' : '-'}{formatINR(tx.amount)}
                       </div>
-                      <div className="text-[10px] text-zinc-500 font-mono">
+                      <div className="text-[10px] text-zinc-400 font-mono">
                         Day {tx.day} of 30
                       </div>
                     </div>

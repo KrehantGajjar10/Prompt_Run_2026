@@ -74,7 +74,7 @@ export const WelcomeBanner: React.FC<WelcomeBannerProps> = ({
             <div className="min-w-0">
               <div className="text-[11px] font-mono uppercase text-zinc-400">Daily Safe Limit</div>
               <div className="text-base sm:text-lg font-bold text-accent-lime font-mono tabular-nums">
-                {formatINR(summary.dailySafeAllowance)} <span className="text-[11px] font-normal text-zinc-500">/ day</span>
+                {formatINR(summary.dailySafeAllowance)} <span className="text-[11px] font-normal text-zinc-400">/ day</span>
               </div>
             </div>
           </div>

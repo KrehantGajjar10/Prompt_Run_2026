@@ -124,14 +124,14 @@ export const SavingsAdjustModal: React.FC<SavingsAdjustModalProps> = ({
                 setAmountStr(e.target.value);
                 if (validationError) setValidationError(null);
               }}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
             />
           </div>
         </div>
 
         {/* Quick Amount Presets */}
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[11px] text-zinc-500">Quick:</span>
+          <span className="text-[11px] text-zinc-400">Quick:</span>
           {mode === 'deposit' ? (
             <>
               <button

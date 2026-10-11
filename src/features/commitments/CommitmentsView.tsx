@@ -69,7 +69,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
           <div className="text-2xl font-bold text-accent-lime font-mono tabular-nums mt-1">
             {formatINR(totalReserved)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             {activeReserved.length} pending bill{activeReserved.length === 1 ? '' : 's'} walled off
           </span>
         </Card>
@@ -79,7 +79,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
           <div className="text-2xl font-bold text-emerald-400 font-mono tabular-nums mt-1">
             {formatINR(totalPaid)}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             {paidCommitments.length} bill{paidCommitments.length === 1 ? '' : 's'} cleared into expenses
           </span>
         </Card>
@@ -89,7 +89,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
           <div className="text-2xl font-bold text-zinc-300 font-mono tabular-nums mt-1">
             {cancelledCommitments.length}
           </div>
-          <span className="text-[11px] text-zinc-500 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             Subscriptions successfully avoided
           </span>
         </Card>
@@ -161,7 +161,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
       {/* Commitments Table / List */}
       <Card variant="default" className="p-0 overflow-hidden">
         {filtered.length === 0 ? (
-          <div className="text-center py-12 px-4 text-xs text-zinc-500 font-mono">
+          <div className="text-center py-12 px-4 text-xs text-zinc-400 font-mono">
             No commitments found in this filter category.
           </div>
         ) : (
@@ -185,7 +185,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                 >
                   <div className="flex items-start sm:items-center gap-3.5 min-w-0">
                     <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700/60 flex items-center justify-center shrink-0">
-                      <Lock className={`w-4 h-4 ${isReserved ? 'text-accent-lime' : 'text-zinc-500'}`} />
+                      <Lock className={`w-4 h-4 ${isReserved ? 'text-accent-lime' : 'text-zinc-400'}`} />
                     </div>
 
                     <div className="min-w-0">
@@ -208,7 +208,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                         {item.provider} • Due {item.dueDateLabel}
                       </div>
                       {item.notes && (
-                        <div className="text-xs text-zinc-500 italic mt-0.5">
+                        <div className="text-xs text-zinc-400 italic mt-0.5">
                           "{item.notes}"
                         </div>
                       )}
@@ -232,7 +232,7 @@ export const CommitmentsView: React.FC<CommitmentsViewProps> = ({
                           </span>
                         )}
                         {isCancelled && (
-                          <span className="text-zinc-500">Released</span>
+                          <span className="text-zinc-400">Released</span>
                         )}
                       </span>
                     </div>

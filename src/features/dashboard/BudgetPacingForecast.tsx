@@ -240,28 +240,28 @@ export const BudgetPacingForecast: React.FC<BudgetPacingForecastProps> = ({ summ
             <span className="w-2.5 h-2.5 rounded-full bg-zinc-600 shrink-0" />
             <span className="text-zinc-300">Spent:</span>
             <strong className="text-zinc-200 tabular-nums">{formatINR(totalSpent)}</strong>
-            <span className="text-zinc-500 text-[11px]">({Math.round(spentPct)}%)</span>
+            <span className="text-zinc-400 text-[11px]">({Math.round(spentPct)}%)</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80 shrink-0" />
             <span className="text-zinc-300">Reserved Bills:</span>
             <strong className="text-zinc-200 tabular-nums">{formatINR(reservedCommitments)}</strong>
-            <span className="text-zinc-500 text-[11px]">({Math.round(reservedPct)}%)</span>
+            <span className="text-zinc-400 text-[11px]">({Math.round(reservedPct)}%)</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0" />
             <span className="text-zinc-300">Locked Savings:</span>
             <strong className="text-emerald-400 tabular-nums">{formatINR(savingsLocked)}</strong>
-            <span className="text-zinc-500 text-[11px]">({Math.round(savingsPct)}%)</span>
+            <span className="text-zinc-400 text-[11px]">({Math.round(savingsPct)}%)</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-accent-lime shrink-0" />
             <span className="text-zinc-300">Safe Available:</span>
             <strong className="text-accent-lime tabular-nums">{formatINR(availableBalance)}</strong>
-            <span className="text-zinc-500 text-[11px]">({Math.round(availablePct)}%)</span>
+            <span className="text-zinc-400 text-[11px]">({Math.round(availablePct)}%)</span>
           </div>
         </div>
       </div>
@@ -273,7 +273,7 @@ export const BudgetPacingForecast: React.FC<BudgetPacingForecastProps> = ({ summ
             <span className="text-xs uppercase font-bold tracking-wider text-zinc-300 font-mono">
               Month-End Balance Forecast (Day 30 Projection)
             </span>
-            <p className="text-[11px] text-zinc-500 font-mono">
+            <p className="text-[11px] text-zinc-400 font-mono">
               Clearly distinguishes current actuals from projected future spending
             </p>
           </div>
@@ -319,31 +319,31 @@ export const BudgetPacingForecast: React.FC<BudgetPacingForecastProps> = ({ summ
         {/* Projection Outcome Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-4">
           <div>
-            <span className="text-[11px] font-mono text-zinc-500 uppercase">
+            <span className="text-[11px] font-mono text-zinc-400 uppercase">
               Assumed Future Daily Burn
             </span>
             <div className="text-xl font-bold font-mono text-zinc-200 tabular-nums mt-0.5">
-              {formatINR(selectedScenarioData.dailyRate)} <span className="text-xs font-normal text-zinc-500">/ day</span>
+              {formatINR(selectedScenarioData.dailyRate)} <span className="text-xs font-normal text-zinc-400">/ day</span>
             </div>
-            <span className="text-[10px] text-zinc-500 font-mono">
+            <span className="text-[10px] text-zinc-400 font-mono">
               Across remaining {daysRemaining} days
             </span>
           </div>
 
           <div>
-            <span className="text-[11px] font-mono text-zinc-500 uppercase">
+            <span className="text-[11px] font-mono text-zinc-400 uppercase">
               Projected Future Outflow
             </span>
             <div className="text-xl font-bold font-mono text-zinc-300 tabular-nums mt-0.5">
               {formatINR(selectedScenarioData.futureSpend)}
             </div>
-            <span className="text-[10px] text-zinc-500 font-mono">
+            <span className="text-[10px] text-zinc-400 font-mono">
               Discretionary spend (Bills reserved separately)
             </span>
           </div>
 
           <div>
-            <span className="text-[11px] font-mono text-zinc-500 uppercase">
+            <span className="text-[11px] font-mono text-zinc-400 uppercase">
               Projected Day 30 Net Buffer
             </span>
             <div

@@ -89,7 +89,7 @@ const SavingsGoalFormInner: React.FC<SavingsGoalFormInnerProps> = ({
           placeholder="e.g. Month-End Buffer, Diwali Train Ticket"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
         />
       </div>
 
@@ -110,7 +110,7 @@ const SavingsGoalFormInner: React.FC<SavingsGoalFormInnerProps> = ({
               placeholder="1000"
               value={targetAmountStr}
               onChange={(e) => setTargetAmountStr(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
             />
           </div>
         </div>
@@ -131,7 +131,7 @@ const SavingsGoalFormInner: React.FC<SavingsGoalFormInnerProps> = ({
                 placeholder="0"
                 value={initialDepositStr}
                 onChange={(e) => setInitialDepositStr(e.target.value)}
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
               />
             </div>
           </div>
@@ -164,7 +164,7 @@ const SavingsGoalFormInner: React.FC<SavingsGoalFormInnerProps> = ({
             placeholder="e.g. Emergency, Travel, Gadgets"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
           />
         </div>
       </div>
@@ -179,7 +179,7 @@ const SavingsGoalFormInner: React.FC<SavingsGoalFormInnerProps> = ({
           placeholder="e.g. Safety net in case medical issue arises"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
         />
       </div>
 

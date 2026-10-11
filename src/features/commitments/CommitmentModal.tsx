@@ -100,7 +100,7 @@ const CommitmentFormInner: React.FC<CommitmentFormInnerProps> = ({
           placeholder="e.g. Airtel 5G Prepaid, Room Broadband Split"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
         />
       </div>
 
@@ -116,7 +116,7 @@ const CommitmentFormInner: React.FC<CommitmentFormInnerProps> = ({
             placeholder="e.g. Airtel, ACT Fibernet, Landlord"
             value={provider}
             onChange={(e) => setProvider(e.target.value)}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
           />
         </div>
 
@@ -136,7 +136,7 @@ const CommitmentFormInner: React.FC<CommitmentFormInnerProps> = ({
               placeholder="0"
               value={amountStr}
               onChange={(e) => setAmountStr(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
             />
           </div>
         </div>
@@ -211,7 +211,7 @@ const CommitmentFormInner: React.FC<CommitmentFormInnerProps> = ({
           placeholder="e.g. Split with 2 roommates via GPay"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
         />
       </div>
 

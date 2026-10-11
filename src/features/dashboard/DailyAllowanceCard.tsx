@@ -162,7 +162,7 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({
                     if (e.key === 'Enter') handleCheckAffordability();
                   }}
                   aria-label="Enter expense amount in rupees"
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg pl-7 pr-3 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg pl-7 pr-3 py-1.5 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
                 />
               </div>
               <Button
@@ -187,7 +187,7 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({
 
             {/* Quick Presets */}
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[11px] text-zinc-500 font-mono">Quick:</span>
+              <span className="text-[11px] text-zinc-400 font-mono">Quick:</span>
               <button
                 type="button"
                 onClick={() => handleCheckAffordability(40)}

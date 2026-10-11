@@ -133,7 +133,7 @@ const TransactionFormInner: React.FC<FormInnerProps> = ({
           placeholder={type === 'income' ? 'e.g. Freelance stipend, Parent allowance' : 'e.g. Tapri Chai, Blinkit pantry'}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
         />
       </div>
 
@@ -155,7 +155,7 @@ const TransactionFormInner: React.FC<FormInnerProps> = ({
               placeholder="0"
               value={amountStr}
               onChange={(e) => setAmountStr(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-7 pr-3 py-2 text-sm text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
             />
           </div>
         </div>
@@ -226,7 +226,7 @@ const TransactionFormInner: React.FC<FormInnerProps> = ({
             placeholder="e.g. Local Kirana, Rapido"
             value={merchant}
             onChange={(e) => setMerchant(e.target.value)}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
           />
         </div>
       </div>
@@ -241,7 +241,7 @@ const TransactionFormInner: React.FC<FormInnerProps> = ({
           placeholder="e.g. Split with roomie, monthly recharge"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+          className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-xs text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-accent-lime transition-colors"
         />
       </div>
 

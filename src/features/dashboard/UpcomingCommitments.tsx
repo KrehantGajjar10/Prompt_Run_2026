@@ -46,7 +46,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
 
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5 font-mono text-xs">
-            <span className="text-zinc-500">Reserved:</span>
+            <span className="text-zinc-400">Reserved:</span>
             <span className="font-bold text-zinc-100 tabular-nums">
               {formatINR(totalReserved)}
             </span>
@@ -75,7 +75,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
 
       {/* Commitments List */}
       {commitments.length === 0 ? (
-        <div className="text-center py-6 text-xs text-zinc-500 font-mono">
+        <div className="text-center py-6 text-xs text-zinc-400 font-mono">
           No bills or subscriptions registered.
         </div>
       ) : (
@@ -98,7 +98,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
               >
                 <div className="flex items-start sm:items-center gap-3 min-w-0">
                   <div className="w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700/60 flex items-center justify-center shrink-0">
-                    <Lock className={`w-3.5 h-3.5 ${isReserved ? 'text-accent-lime' : 'text-zinc-500'}`} />
+                    <Lock className={`w-3.5 h-3.5 ${isReserved ? 'text-accent-lime' : 'text-zinc-400'}`} />
                   </div>
 
                   <div className="min-w-0">
@@ -117,10 +117,10 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
                         </span>
                       )}
                     </div>
-                    <div className="text-[11px] text-zinc-500 mt-0.5 font-mono">
+                    <div className="text-[11px] text-zinc-400 mt-0.5 font-mono">
                       {item.provider} • Due {item.dueDateLabel}
                       {isReserved && (
-                        <span className="text-zinc-400 ml-1">
+                        <span className="text-zinc-300 ml-1">
                           ({item.dueDay === currentDay ? 'today' : item.dueDay > currentDay ? `in ${item.dueDay - currentDay}d` : 'overdue'})
                         </span>
                       )}
@@ -148,7 +148,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
                         </span>
                       )}
                       {isCancelled && (
-                        <span className="text-zinc-500">Cancelled / Released</span>
+                        <span className="text-zinc-400">Cancelled / Released</span>
                       )}
                     </span>
                   </div>
@@ -172,7 +172,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
                       <button
                         type="button"
                         onClick={() => onCancelCommitment(item.id)}
-                        className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-amber-400 transition-colors cursor-pointer"
+                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors cursor-pointer"
                         title="Cancel subscription (releases reserved funds)"
                         aria-label={`Cancel ${item.title}`}
                       >
@@ -184,7 +184,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
                       <button
                         type="button"
                         onClick={() => onEditCommitment(item)}
-                        className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-200 transition-colors cursor-pointer"
+                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
                         title="Edit commitment"
                         aria-label={`Edit ${item.title}`}
                       >
@@ -196,7 +196,7 @@ export const UpcomingCommitments: React.FC<UpcomingCommitmentsProps> = ({
                       <button
                         type="button"
                         onClick={() => onDeleteCommitment(item.id)}
-                        className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-red-400 transition-colors cursor-pointer"
+                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-red-400 transition-colors cursor-pointer"
                         title="Delete record"
                         aria-label={`Delete ${item.title}`}
                       >

@@ -64,7 +64,7 @@ export const MonthProgressBar: React.FC<MonthProgressBarProps> = ({ summary, com
         />
 
         {/* Mobile simple markers row (< sm) */}
-        <div className="flex sm:hidden items-center justify-between mt-1.5 text-[10px] font-mono text-zinc-500">
+        <div className="flex sm:hidden items-center justify-between mt-1.5 text-[10px] font-mono text-zinc-400">
           <span>Day 1</span>
           <span className="text-accent-lime font-bold">
             Day {summary.currentDay} (Today)
@@ -77,7 +77,7 @@ export const MonthProgressBar: React.FC<MonthProgressBarProps> = ({ summary, com
           {/* Day 1 marker */}
           <div className="absolute left-0 -translate-x-1/2 flex flex-col items-center">
             <div className="w-2 h-2 rounded-full bg-zinc-600 mb-0.5" />
-            <span className="text-[10px] font-mono text-zinc-500 whitespace-nowrap">Day 1</span>
+            <span className="text-[10px] font-mono text-zinc-400 whitespace-nowrap">Day 1</span>
           </div>
 
           {/* Current Day Marker */}
@@ -113,7 +113,7 @@ export const MonthProgressBar: React.FC<MonthProgressBarProps> = ({ summary, com
           {/* Day 30 finish line */}
           <div className="absolute right-0 translate-x-1/2 flex flex-col items-center">
             <div className="w-2 h-2 rounded-full bg-zinc-600 mb-0.5" />
-            <span className="text-[10px] font-mono text-zinc-500 whitespace-nowrap">Day 30</span>
+            <span className="text-[10px] font-mono text-zinc-400 whitespace-nowrap">Day 30</span>
           </div>
         </div>
       </div>
