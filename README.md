@@ -249,7 +249,7 @@ The project includes verified scripts configured in `package.json`:
 The accounting and simulation logic is verified using Vitest:
 
 - **Unit Test File**: [`src/lib/calculations.test.ts`](src/lib/calculations.test.ts)
-- **Verified Result**: **7 passing tests** verifying:
+- **Verified Result**: **9 passing tests** verifying:
   - Starting budget initialization and baseline daily allowances
   - Non-duplicative accounting formula integrity
   - Accurate calculation of safe discretionary balance
@@ -257,6 +257,8 @@ The accounting and simulation logic is verified using Vitest:
   - Ring-fencing of locked savings goals
   - Zero double-counting when marking commitments as paid
   - Decision simulation delta calculations and risk level assignments
+  - Empty lists, zero balances, and boundary day inputs safety
+  - Graceful handling of heavy negative remaining balances without negative daily allowances
 
 To run tests locally:
 ```bash

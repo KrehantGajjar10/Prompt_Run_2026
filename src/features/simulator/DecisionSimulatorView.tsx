@@ -212,40 +212,48 @@ export const DecisionSimulatorView: React.FC = () => {
             >
               Extra Savings (+₹300)
             </button>
-            {finance.commitments.find((c) => c.status === 'reserved') && (
-              <button
-                type="button"
-                onClick={() => {
-                  const comm = finance.commitments.find((c) => c.status === 'reserved')!;
-                  handleSelectPreset({
-                    type: 'cancel_subscription',
-                    title: `Cancel ${comm.title}`,
-                    amount: comm.amount,
-                    targetId: comm.id,
-                  });
-                }}
-                className="text-xs font-mono px-3 py-1.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-amber-400 border border-zinc-700 transition-colors cursor-pointer"
-              >
-                Cancel Subscription (Save ₹{finance.commitments.find((c) => c.status === 'reserved')?.amount})
-              </button>
-            )}
-            {finance.commitments.find((c) => c.status === 'reserved') && (
-              <button
-                type="button"
-                onClick={() => {
-                  const comm = finance.commitments.find((c) => c.status === 'reserved')!;
-                  handleSelectPreset({
-                    type: 'pay_bill_early',
-                    title: `Pay ${comm.title} Early`,
-                    amount: comm.amount,
-                    targetId: comm.id,
-                  });
-                }}
-                className="text-xs font-mono px-3 py-1.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-accent-lime border border-zinc-700 transition-colors cursor-pointer"
-              >
-                Pay Bill Early (₹{finance.commitments.find((c) => c.status === 'reserved')?.amount})
-              </button>
-            )}
+            {(() => {
+              const reservedBills = finance.commitments.filter((c) => c.status === 'reserved');
+              const cancelTarget = reservedBills.find((c) => c.isSubscription) || reservedBills[0];
+              const payTarget = reservedBills.find((c) => c.id !== cancelTarget?.id) || reservedBills[0];
+
+              return (
+                <>
+                  {cancelTarget && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleSelectPreset({
+                          type: 'cancel_subscription',
+                          title: `Cancel ${cancelTarget.title}`,
+                          amount: cancelTarget.amount,
+                          targetId: cancelTarget.id,
+                        });
+                      }}
+                      className="text-xs font-mono px-3 py-1.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-amber-400 border border-zinc-700 transition-colors cursor-pointer"
+                    >
+                      Cancel {cancelTarget.title.slice(0, 15)} (Save ₹{cancelTarget.amount})
+                    </button>
+                  )}
+                  {payTarget && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleSelectPreset({
+                          type: 'pay_bill_early',
+                          title: `Pay ${payTarget.title} Early`,
+                          amount: payTarget.amount,
+                          targetId: payTarget.id,
+                        });
+                      }}
+                      className="text-xs font-mono px-3 py-1.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-accent-lime border border-zinc-700 transition-colors cursor-pointer"
+                    >
+                      Pay {payTarget.title.slice(0, 15)} Early (₹{payTarget.amount})
+                    </button>
+                  )}
+                </>
+              );
+            })()}
           </div>
         </div>
       </div>
@@ -398,6 +406,8 @@ export const DecisionSimulatorView: React.FC = () => {
             <>
               {/* Verdict Alert Card */}
               <div
+                role="status"
+                aria-live="polite"
                 className={`p-4 rounded-xl border transition-all ${
                   simulationResult.riskLevel === 'danger'
                     ? 'bg-red-500/10 border-red-500/30'

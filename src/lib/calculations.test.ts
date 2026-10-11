@@ -188,4 +188,56 @@ describe('Financial Accounting Calculations', () => {
     expect(breakdown[0].category).toBe('food_dining');
     expect(breakdown[0].totalSpent).toBeGreaterThan(0);
   });
+
+  it('safely handles empty lists, zero balances, and boundary day inputs', () => {
+    const summary = calculateFinancialSummary({
+      startingBudget: 0,
+      totalDays: 0,
+      currentDay: 0,
+      transactions: [],
+      commitments: [],
+      savingsGoals: [],
+    });
+
+    expect(summary.startingBudget).toBe(0);
+    expect(summary.totalFunds).toBe(0);
+    expect(summary.totalSpent).toBe(0);
+    expect(summary.availableBalance).toBe(0);
+    expect(summary.dailySafeAllowance).toBe(0);
+    expect(summary.daysRemaining).toBeGreaterThanOrEqual(1);
+    expect(summary.totalDays).toBeGreaterThanOrEqual(1);
+
+    const emptyBreakdown = calculateCategoryBreakdown([]);
+    expect(emptyBreakdown).toEqual([]);
+  });
+
+  it('handles negative remaining balance gracefully without negative allowance', () => {
+    const heavySpending = [
+      {
+        id: 'tx-heavy',
+        title: 'Unexpected Heavy Cost',
+        amount: 15000,
+        type: 'expense' as const,
+        category: 'personal_essentials' as const,
+        day: 1,
+        date: 'Oct 01',
+        time: '10:00 AM',
+        paymentMethod: 'Debit Card' as const,
+      },
+    ];
+
+    const summary = calculateFinancialSummary({
+      startingBudget: 10000,
+      totalDays: 30,
+      currentDay: 1,
+      transactions: heavySpending,
+      commitments: [],
+      savingsGoals: [],
+    });
+
+    expect(summary.availableBalance).toBe(0);
+    expect(summary.dailySafeAllowance).toBe(0);
+    expect(summary.totalSpent).toBe(15000);
+    expect(summary.burnRateStatus).toBe('critical');
+  });
 });

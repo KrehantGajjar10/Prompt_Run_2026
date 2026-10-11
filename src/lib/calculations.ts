@@ -41,9 +41,10 @@ export function calculateFinancialSummary(input: CalculationInput): FinancialSum
     savingsGoals,
   } = input;
 
-  const clampedCurrentDay = Math.min(Math.max(1, currentDay), totalDays);
+  const safeTotalDays = Math.max(1, totalDays || 30);
+  const clampedCurrentDay = Math.min(Math.max(1, currentDay || 1), safeTotalDays);
   // Definition of remaining days: inclusive of current day (from currentDay to totalDays)
-  const daysRemaining = Math.max(1, totalDays - clampedCurrentDay + 1);
+  const daysRemaining = Math.max(1, safeTotalDays - clampedCurrentDay + 1);
 
   // 1. Additional income from transactions (type === 'income') + explicit income
   const transactionIncome = transactions
@@ -128,7 +129,7 @@ export function calculateFinancialSummary(input: CalculationInput): FinancialSum
     startingBudget,
     additionalIncome,
     totalFunds,
-    totalDays,
+    totalDays: safeTotalDays,
     currentDay: clampedCurrentDay,
     totalSpent,
     reservedCommitments,
