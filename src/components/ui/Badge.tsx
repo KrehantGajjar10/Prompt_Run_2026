@@ -18,21 +18,21 @@ export const Badge: React.FC<BadgeProps> = ({
 }) => {
   const variantStyles: Record<BadgeVariant, string> = {
     lime: 'bg-[#bef264]/10 text-[#bef264] border-[#bef264]/25',
-    success: 'bg-[#34d399]/10 text-[#34d399] border-[#34d399]/25',
-    warning: 'bg-[#fbbf24]/10 text-[#fbbf24] border-[#fbbf24]/25',
-    danger: 'bg-[#f87171]/10 text-[#f87171] border-[#f87171]/25',
-    neutral: 'bg-[#1e2534] text-[#94a3b8] border-[#29354a]',
-    outline: 'bg-transparent text-[#cbd5e1] border-[#2a364b]',
+    success: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25',
+    warning: 'bg-amber-500/10 text-amber-400 border-amber-500/25',
+    danger: 'bg-red-500/10 text-red-400 border-red-500/25',
+    neutral: 'bg-zinc-800 text-zinc-300 border-zinc-700/80',
+    outline: 'bg-transparent text-zinc-300 border-zinc-700',
   };
 
   const sizeStyles = {
-    sm: 'text-xs px-2 py-0.5 gap-1',
-    md: 'text-xs px-2.5 py-1 gap-1.5 font-medium',
+    sm: 'text-[11px] px-2 py-0.5 gap-1 font-mono',
+    md: 'text-xs px-2.5 py-1 gap-1.5 font-medium font-mono',
   }[size];
 
   return (
     <span
-      className={`inline-flex items-center rounded-full border tracking-wide uppercase font-semibold ${sizeStyles} ${variantStyles[variant]} ${className}`}
+      className={`inline-flex items-center rounded border tracking-wide uppercase font-semibold ${sizeStyles} ${variantStyles[variant]} ${className}`}
       {...props}
     >
       {icon && <span className="shrink-0">{icon}</span>}

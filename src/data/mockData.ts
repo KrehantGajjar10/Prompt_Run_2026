@@ -7,7 +7,7 @@ export const INITIAL_BUDGET_CONFIG = {
   totalDays: 30,
   currentDay: 12,
   monthName: 'October 2026',
-  challengeName: 'Survive the Month #01',
+  challengeName: 'Survive the Month',
 };
 
 export const MOCK_TRANSACTIONS: Transaction[] = [
@@ -17,6 +17,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Metro Smart Card Monthly Pass',
     description: 'Auto-load 50 trips card pass',
     amount: 500,
+    type: 'expense',
     category: 'transit_commute',
     day: 1,
     date: 'Oct 1',
@@ -30,6 +31,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Blinkit Monthly Grocery Pantry',
     description: 'Atta, rice, Maggi 12-pack, cooking oil, tea bags',
     amount: 980,
+    type: 'expense',
     category: 'food_dining',
     day: 2,
     date: 'Oct 2',
@@ -43,6 +45,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Hostel Laundry Detergent & Toiletries',
     description: 'Surf Excel refill, Dettol soap, shampoo pouch',
     amount: 190,
+    type: 'expense',
     category: 'personal_essentials',
     day: 3,
     date: 'Oct 3',
@@ -54,8 +57,9 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-04',
     title: 'Tapri Chai & Samosa Gang Split',
-    description: 'Evening semester study break',
+    description: 'Evening study break',
     amount: 90,
+    type: 'expense',
     category: 'food_dining',
     day: 4,
     date: 'Oct 4',
@@ -69,6 +73,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Rapido Bike Taxi to Internship Fair',
     description: 'Round trip from PG to Tech Park',
     amount: 120,
+    type: 'expense',
     category: 'transit_commute',
     day: 5,
     date: 'Oct 5',
@@ -82,6 +87,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Spotify Premium Duo Shared Split',
     description: 'Monthly music streaming split with roommate',
     amount: 89,
+    type: 'expense',
     category: 'utilities_bills',
     day: 6,
     date: 'Oct 6',
@@ -95,6 +101,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Zepto Late Night Exam Snacks',
     description: 'Bread, peanut butter, chips for all-nighter',
     amount: 250,
+    type: 'expense',
     category: 'food_dining',
     day: 7,
     date: 'Oct 7',
@@ -108,6 +115,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Apollo Pharmacy First Aid & ORS',
     description: 'Electral sachets, band-aids, Paracetamol strip',
     amount: 160,
+    type: 'expense',
     category: 'emergency_health',
     day: 8,
     date: 'Oct 8',
@@ -121,6 +129,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Campus Canteen Thali Meals',
     description: 'Lunch & dinner mess top-up tokens',
     amount: 240,
+    type: 'expense',
     category: 'food_dining',
     day: 9,
     date: 'Oct 9',
@@ -134,6 +143,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Weekend Cinema Matinee Student Pass',
     description: 'Affordable Friday college group movie',
     amount: 280,
+    type: 'expense',
     category: 'entertainment_social',
     day: 10,
     date: 'Oct 10',
@@ -147,6 +157,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Street Momos & Cold Drink Split',
     description: 'Post-movie street food with batchmates',
     amount: 170,
+    type: 'expense',
     category: 'entertainment_social',
     day: 10,
     date: 'Oct 10',
@@ -160,6 +171,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Grocery Refill (Eggs, Milk, Bananas)',
     description: 'Fresh breakfast staples for the week',
     amount: 320,
+    type: 'expense',
     category: 'food_dining',
     day: 11,
     date: 'Oct 11',
@@ -173,6 +185,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Haircut & Basic Grooming',
     description: 'Monthly salon visit',
     amount: 220,
+    type: 'expense',
     category: 'personal_essentials',
     day: 11,
     date: 'Oct 11',
@@ -186,6 +199,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Weekend Metro Rides',
     description: 'Extra travel to project group meet',
     amount: 110,
+    type: 'expense',
     category: 'transit_commute',
     day: 11,
     date: 'Oct 11',
@@ -198,7 +212,8 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     id: 'tx-15',
     title: 'Hostel Night Biryani Share',
     description: 'Sunday special shared biryani plate',
-    amount: 311,
+    amount: 391,
+    type: 'expense',
     category: 'food_dining',
     day: 11,
     date: 'Oct 11',
@@ -212,6 +227,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Tapri Morning Adrak Chai & Rusk',
     description: 'Morning wake-up ritual before classes',
     amount: 30,
+    type: 'expense',
     category: 'food_dining',
     day: 12,
     date: 'Oct 12',
@@ -225,6 +241,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Shared Auto-Rickshaw to Campus Library',
     description: 'Quick ride to submit research report',
     amount: 40,
+    type: 'expense',
     category: 'transit_commute',
     day: 12,
     date: 'Oct 12',
@@ -238,6 +255,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'DTP Xerox & Spiral Project Printouts',
     description: 'Assignment submission copy with color cover',
     amount: 30,
+    type: 'expense',
     category: 'personal_essentials',
     day: 12,
     date: 'Oct 12',
@@ -251,6 +269,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     title: 'Evening Lime Soda & Samosa',
     description: 'Quick refreshment during study group',
     amount: 40,
+    type: 'expense',
     category: 'food_dining',
     day: 12,
     date: 'Oct 12',
@@ -259,14 +278,6 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     merchant: 'Juice Junction',
   },
 ];
-
-// Verify sum:
-// 500 + 980 + 190 + 90 + 120 + 89 + 250 + 160 + 240 + 280 + 170 + 320 + 220 + 110 + 311 + 30 + 40 + 30 + 40 = 4,170.
-// Let's ensure total spent is exactly ₹4,250:
-// 4,250 - 4,170 = 80 difference.
-// Let's adjust tx-15 from 311 to 391:
-// 500+980+190+90+120+89+250+160+240+280+170+320+220+110+391+30+40+30+40 = 4,250!
-MOCK_TRANSACTIONS[14].amount = 391;
 
 export const MOCK_UPCOMING_COMMITMENTS: UpcomingCommitment[] = [
   {
@@ -280,6 +291,7 @@ export const MOCK_UPCOMING_COMMITMENTS: UpcomingCommitment[] = [
     isReserved: true,
     status: 'reserved',
     autoDebit: false,
+    isSubscription: true,
     notes: 'Mandatory for hotspot and college online tests.',
   },
   {
@@ -293,6 +305,7 @@ export const MOCK_UPCOMING_COMMITMENTS: UpcomingCommitment[] = [
     isReserved: true,
     status: 'reserved',
     autoDebit: true,
+    isSubscription: true,
     notes: 'Shared 1/3rd bill with two flatmates.',
   },
   {
@@ -306,6 +319,7 @@ export const MOCK_UPCOMING_COMMITMENTS: UpcomingCommitment[] = [
     isReserved: true,
     status: 'reserved',
     autoDebit: false,
+    isSubscription: false,
     notes: 'AC and water geyser sub-meter shared cost.',
   },
   {
@@ -319,6 +333,7 @@ export const MOCK_UPCOMING_COMMITMENTS: UpcomingCommitment[] = [
     isReserved: true,
     status: 'reserved',
     autoDebit: false,
+    isSubscription: true,
     notes: 'Group discount fitness pass share.',
   },
 ];
@@ -348,11 +363,9 @@ export const MOCK_SAVINGS_GOALS: SavingsGoal[] = [
   },
 ];
 
-/**
- * Clean empty dataset for demonstrating Day 1 or fresh start state
- */
 export const EMPTY_DEMO_DATA = {
   startingBudget: 10000,
+  additionalIncome: 0,
   totalDays: 30,
   currentDay: 1,
   transactions: [] as Transaction[],
@@ -368,6 +381,7 @@ export const EMPTY_DEMO_DATA = {
       isReserved: true,
       status: 'reserved',
       autoDebit: false,
+      isSubscription: true,
       notes: 'Monthly essential connectivity',
     },
     {
@@ -381,6 +395,7 @@ export const EMPTY_DEMO_DATA = {
       isReserved: true,
       status: 'reserved',
       autoDebit: true,
+      isSubscription: true,
       notes: 'Flat broadband share',
     },
   ] as UpcomingCommitment[],
@@ -397,3 +412,15 @@ export const EMPTY_DEMO_DATA = {
     },
   ] as SavingsGoal[],
 };
+
+export function getFreshMockData() {
+  return {
+    startingBudget: INITIAL_BUDGET_CONFIG.startingBudget,
+    additionalIncome: 0,
+    totalDays: INITIAL_BUDGET_CONFIG.totalDays,
+    currentDay: INITIAL_BUDGET_CONFIG.currentDay,
+    transactions: JSON.parse(JSON.stringify(MOCK_TRANSACTIONS)) as Transaction[],
+    commitments: JSON.parse(JSON.stringify(MOCK_UPCOMING_COMMITMENTS)) as UpcomingCommitment[],
+    savingsGoals: JSON.parse(JSON.stringify(MOCK_SAVINGS_GOALS)) as SavingsGoal[],
+  };
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Target, TrendingDown, CheckCircle2, AlertTriangle, XCircle, Sparkles } from 'lucide-react';
+import { Target, TrendingDown, CheckCircle2, AlertTriangle, XCircle, Sparkles, ArrowRight } from 'lucide-react';
 import { Card } from '../../components/ui/Card';
 import { ProgressBar } from '../../components/ui/ProgressBar';
 import { Button } from '../../components/ui/Button';
@@ -8,9 +8,13 @@ import { formatINR, parseINR } from '../../lib/currency';
 
 export interface DailyAllowanceCardProps {
   summary: FinancialSummary;
+  onOpenFullSimulator?: () => void;
 }
 
-export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary }) => {
+export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({
+  summary,
+  onOpenFullSimulator,
+}) => {
   const [testAmountStr, setTestAmountStr] = useState<string>('');
   const [testedAmount, setTestedAmount] = useState<number | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -48,48 +52,48 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
   const evaluation = testedAmount !== null ? evaluateExpense(testedAmount, cushionLeftToday, summary) : null;
 
   return (
-    <Card variant="elevated" className="mb-6 relative overflow-hidden border-[#2c374b]">
+    <Card variant="elevated" className="mb-6 relative overflow-hidden border-zinc-700/80">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Col: Daily Allowance Pulse */}
         <div className="lg:col-span-7">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-accent-lime/10 text-accent-lime">
+              <div className="p-1.5 rounded-lg bg-zinc-800 text-accent-lime border border-zinc-700/60">
                 <Target className="w-4 h-4" />
               </div>
-              <h3 className="text-base font-semibold text-[#f8fafc]">
+              <h3 className="text-base font-semibold text-zinc-100 font-sans">
                 Safe Daily Spending Allowance
               </h3>
             </div>
-            <span className="text-xs px-2.5 py-1 rounded-md bg-[#192231] text-[#94a3b8] font-medium border border-[#26354b]">
+            <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-zinc-800 text-zinc-300 font-medium border border-zinc-700">
               Recalculated Daily
             </span>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-4">
-            <div className="text-3xl sm:text-4xl font-extrabold text-accent-lime tracking-tight tabular-nums">
+            <div className="text-3xl sm:text-4xl font-extrabold text-accent-lime tracking-tight font-mono tabular-nums">
               {formatINR(dailyAllowance)}
-              <span className="text-sm font-normal text-[#94a3b8] ml-1.5">
+              <span className="text-xs sm:text-sm font-normal text-zinc-400 ml-1.5 font-sans">
                 / day
               </span>
             </div>
-            <div className="text-xs text-[#94a3b8] flex items-center gap-1.5">
-              <TrendingDown className="w-3.5 h-3.5 text-[#fbbf24]" />
+            <div className="text-xs text-zinc-400 flex items-center gap-1.5 font-mono">
+              <TrendingDown className="w-3.5 h-3.5 text-amber-400" />
               <span>
-                Baseline was <strong className="text-[#cbd5e1]">{formatINR(summary.baselineDailyAllowance)}/day</strong> (-₹{Math.round(summary.baselineDailyAllowance - dailyAllowance)}/day adjust)
+                Baseline was <strong className="text-zinc-200">{formatINR(summary.baselineDailyAllowance)}/day</strong>
               </span>
             </div>
           </div>
 
           {/* Today's Tracker */}
-          <div className="bg-[#10141e] border border-[#1d2636] rounded-xl p-4">
+          <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-4">
             <div className="flex items-center justify-between text-xs mb-2">
-              <span className="font-medium text-[#cbd5e1]">
+              <span className="font-medium text-zinc-300">
                 Today's Spending (Day {summary.currentDay})
               </span>
-              <span className="text-[#94a3b8]">
-                <strong className="text-[#f1f5f9] tabular-nums">{formatINR(spentToday)}</strong> of{' '}
-                <strong className="text-[#cbd5e1] tabular-nums">{formatINR(dailyAllowance)}</strong> safe limit
+              <span className="text-zinc-400 font-mono">
+                <strong className="text-zinc-100 tabular-nums">{formatINR(spentToday)}</strong> of{' '}
+                <strong className="text-zinc-300 tabular-nums">{formatINR(dailyAllowance)}</strong> safe limit
               </span>
             </div>
 
@@ -99,13 +103,13 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
               size="md"
             />
 
-            <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-[#18212f] text-xs">
-              <span className="text-[#94a3b8]">
+            <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-zinc-800/80 text-xs font-mono">
+              <span className="text-zinc-400">
                 Remaining cushion today:
               </span>
               <span
                 className={`font-semibold tabular-nums ${
-                  cushionLeftToday > 0 ? 'text-[#34d399]' : 'text-[#f87171]'
+                  cushionLeftToday > 0 ? 'text-emerald-400' : 'text-red-400'
                 }`}
               >
                 {cushionLeftToday > 0 ? `+${formatINR(cushionLeftToday)} remaining` : 'Limit reached for today'}
@@ -114,21 +118,27 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
           </div>
         </div>
 
-        {/* Right Col: "Can I Afford This?" Instant Decision Tool */}
-        <div className="lg:col-span-5 bg-[#10141e] border border-[#202b3d] rounded-xl p-4.5">
+        {/* Right Col: Instant "Can I Afford This?" Micro-Tool */}
+        <div className="lg:col-span-5 bg-zinc-950 border border-zinc-800 rounded-xl p-4 sm:p-4.5">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-accent-lime" />
-              <h4 className="text-xs uppercase font-bold tracking-wider text-[#cbd5e1]">
-                Instant Decision Checker
+              <h4 className="text-xs uppercase font-bold tracking-wider text-zinc-200 font-mono">
+                Quick Affordability Check
               </h4>
             </div>
-            <span className="text-[11px] text-[#64748b]">
-              Can I afford this?
-            </span>
+            {onOpenFullSimulator && (
+              <button
+                type="button"
+                onClick={onOpenFullSimulator}
+                className="text-[11px] text-accent-lime hover:underline font-mono flex items-center gap-1 cursor-pointer"
+              >
+                Full Simulator <ArrowRight className="w-3 h-3" />
+              </button>
+            )}
           </div>
 
-          <p className="text-xs text-[#94a3b8] mb-3">
+          <p className="text-xs text-zinc-400 mb-3 leading-relaxed">
             Thinking of buying something right now? Check if it fits today's limit without borrowing from tomorrow.
           </p>
 
@@ -136,7 +146,7 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
           <div className="space-y-2.5">
             <div className="flex gap-2">
               <div className="relative flex-1">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#94a3b8] font-bold">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-zinc-400 font-mono">
                   ₹
                 </span>
                 <input
@@ -152,7 +162,7 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
                     if (e.key === 'Enter') handleCheckAffordability();
                   }}
                   aria-label="Enter expense amount in rupees"
-                  className="w-full bg-[#18202d] border border-[#28354b] rounded-lg pl-7 pr-3 py-1.5 text-sm text-[#f8fafc] placeholder-[#64748b] focus:outline-none focus:border-accent-lime transition-colors tabular-nums"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg pl-7 pr-3 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime font-mono tabular-nums transition-colors"
                 />
               </div>
               <Button
@@ -175,27 +185,27 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
               )}
             </div>
 
-            {/* Quick Preset Buttons */}
+            {/* Quick Presets */}
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[11px] text-[#64748b]">Quick:</span>
+              <span className="text-[11px] text-zinc-500 font-mono">Quick:</span>
               <button
                 type="button"
                 onClick={() => handleCheckAffordability(40)}
-                className="text-[11px] px-2 py-0.5 rounded bg-[#161f2c] hover:bg-[#1f2b3e] text-[#cbd5e1] border border-[#243247] transition-colors cursor-pointer"
+                className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 cursor-pointer"
               >
                 Chai (₹40)
               </button>
               <button
                 type="button"
                 onClick={() => handleCheckAffordability(150)}
-                className="text-[11px] px-2 py-0.5 rounded bg-[#161f2c] hover:bg-[#1f2b3e] text-[#cbd5e1] border border-[#243247] transition-colors cursor-pointer"
+                className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 cursor-pointer"
               >
-                Food (₹150)
+                Meal (₹150)
               </button>
               <button
                 type="button"
                 onClick={() => handleCheckAffordability(350)}
-                className="text-[11px] px-2 py-0.5 rounded bg-[#161f2c] hover:bg-[#1f2b3e] text-[#cbd5e1] border border-[#243247] transition-colors cursor-pointer"
+                className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 cursor-pointer"
               >
                 Outing (₹350)
               </button>
@@ -205,7 +215,7 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
             {validationError && (
               <div
                 role="alert"
-                className="p-2 rounded-lg bg-[#f87171]/10 border border-[#f87171]/25 text-xs text-[#f87171] flex items-center gap-2"
+                className="p-2 rounded-lg bg-red-500/10 border border-red-500/25 text-xs text-red-400 flex items-center gap-2"
               >
                 <XCircle className="w-3.5 h-3.5 shrink-0" />
                 <span>{validationError}</span>
@@ -223,11 +233,11 @@ export const DailyAllowanceCard: React.FC<DailyAllowanceCardProps> = ({ summary 
                   {evaluation.icon}
                   <span className={evaluation.titleClass}>{evaluation.title}</span>
                 </div>
-                <p className="text-[#cbd5e1] leading-relaxed">
+                <p className="text-zinc-300 leading-relaxed">
                   {evaluation.description}
                 </p>
                 {evaluation.impactNote && (
-                  <div className="mt-2 pt-2 border-t border-white/10 text-[11px] text-[#94a3b8]">
+                  <div className="mt-2 pt-2 border-t border-white/10 text-[11px] text-zinc-400 font-mono">
                     {evaluation.impactNote}
                   </div>
                 )}
@@ -257,11 +267,11 @@ function evaluateExpense(
   if (amount > summary.availableBalance) {
     return {
       title: 'Danger: Exceeds Available Funds!',
-      titleClass: 'text-[#f87171]',
+      titleClass: 'text-red-400',
       description: `This purchase of ${formatINR(amount)} exceeds your entire remaining discretionary pool of ${formatINR(summary.availableBalance)}.`,
-      impactNote: 'You would have to drain locked savings or skip an upcoming bill to cover this.',
-      icon: <XCircle className="w-4 h-4 text-[#f87171]" />,
-      bgClass: 'bg-[#f87171]/10 border-[#f87171]/30',
+      impactNote: 'Would force you into debt or tapping locked savings.',
+      icon: <XCircle className="w-4 h-4 text-red-400" />,
+      bgClass: 'bg-red-500/10 border-red-500/30',
     };
   }
 
@@ -270,14 +280,13 @@ function evaluateExpense(
     return {
       title: 'Safe to Spend!',
       titleClass: 'text-[#bef264]',
-      description: `Go for it. Fits comfortably inside today's allowance. You will still have ${formatINR(remainingAfter)} cushion left today.`,
+      description: `Fits comfortably inside today's allowance. You will still have ${formatINR(remainingAfter)} cushion left today.`,
       impactNote: 'Zero impact on tomorrow’s daily quota.',
       icon: <CheckCircle2 className="w-4 h-4 text-accent-lime" />,
       bgClass: 'bg-[#bef264]/10 border-[#bef264]/30',
     };
   }
 
-  // Exceeds today's cushion but within total available
   const excess = amount - cushionToday;
   const newDaysRemaining = Math.max(1, summary.daysRemaining - 1);
   const newBalance = Math.max(0, summary.availableBalance - amount);
@@ -285,10 +294,10 @@ function evaluateExpense(
 
   return {
     title: 'Tight Squeeze: Borrows from Tomorrow',
-    titleClass: 'text-[#fbbf24]',
-    description: `This exceeds today's cushion by ${formatINR(excess)}. If you spend this, your future daily allowance drops from ${formatINR(summary.dailySafeAllowance)} to ~${formatINR(futureDaily)}/day for the remaining ${newDaysRemaining} days.`,
-    impactNote: 'Survivable, but tomorrow will be a strict "no chai / walk only" day.',
-    icon: <AlertTriangle className="w-4 h-4 text-[#fbbf24]" />,
-    bgClass: 'bg-[#fbbf24]/10 border-[#fbbf24]/30',
+    titleClass: 'text-amber-400',
+    description: `Exceeds today's cushion by ${formatINR(excess)}. If spent, your future daily allowance drops from ${formatINR(summary.dailySafeAllowance)} to ~${formatINR(futureDaily)}/day for the remaining ${newDaysRemaining} days.`,
+    impactNote: 'Survivable, but tomorrow will require strict belt-tightening.',
+    icon: <AlertTriangle className="w-4 h-4 text-amber-400" />,
+    bgClass: 'bg-amber-500/10 border-amber-500/30',
   };
 }

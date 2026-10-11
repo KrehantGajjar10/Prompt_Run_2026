@@ -21,6 +21,20 @@ export interface DashboardViewProps {
   savingsGoals: SavingsGoal[];
   categoryBreakdown: CategorySpendingSummary[];
   isLoading?: boolean;
+  onOpenAddExpense: () => void;
+  onOpenAddCommitment: () => void;
+  onOpenAddGoal: () => void;
+  onOpenAdjustGoal: (goal: SavingsGoal) => void;
+  onOpenSimulator: () => void;
+  onNavigateToTransactions: () => void;
+  onNavigateToCommitments: () => void;
+  onEditTransaction: (tx: Transaction) => void;
+  onDeleteTransaction: (id: string) => void;
+  onPayCommitment: (id: string) => void;
+  onCancelCommitment: (id: string) => void;
+  onDeleteCommitment: (id: string) => void;
+  onEditCommitment: (item: UpcomingCommitment) => void;
+  onDeleteGoal: (id: string) => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
@@ -30,6 +44,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   savingsGoals,
   categoryBreakdown,
   isLoading = false,
+  onOpenAddExpense,
+  onOpenAddCommitment,
+  onOpenAddGoal,
+  onOpenAdjustGoal,
+  onOpenSimulator,
+  onNavigateToTransactions,
+  onNavigateToCommitments,
+  onEditTransaction,
+  onDeleteTransaction,
+  onPayCommitment,
+  onCancelCommitment,
+  onDeleteCommitment,
+  onEditCommitment,
+  onDeleteGoal,
 }) => {
   if (isLoading) {
     return <DashboardLoadingSkeleton />;
@@ -38,16 +66,30 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   return (
     <div className="space-y-6">
       {/* 1. Contextual Welcome Banner */}
-      <WelcomeBanner summary={summary} />
+      <WelcomeBanner
+        summary={summary}
+        onOpenAddExpense={onOpenAddExpense}
+        onOpenSimulator={onOpenSimulator}
+      />
 
       {/* 2. Primary 4 KPI Financial Cards */}
-      <BudgetSummaryCards summary={summary} />
+      <BudgetSummaryCards
+        summary={summary}
+        onNavigateToTransactions={onNavigateToTransactions}
+        onNavigateToCommitments={onNavigateToCommitments}
+      />
 
       {/* 3. 30-Day Survival Timeline */}
-      <MonthProgressBar summary={summary} />
+      <MonthProgressBar
+        summary={summary}
+        commitments={commitments}
+      />
 
       {/* 4. Safe Daily Allowance + Instant Decision Affordability Checker */}
-      <DailyAllowanceCard summary={summary} />
+      <DailyAllowanceCard
+        summary={summary}
+        onOpenFullSimulator={onOpenSimulator}
+      />
 
       {/* 5. Two-column Detailed Sections */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -56,6 +98,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <RecentTransactions
             transactions={transactions}
             currentDay={summary.currentDay}
+            onOpenAddModal={onOpenAddExpense}
+            onEditTransaction={onEditTransaction}
+            onDeleteTransaction={onDeleteTransaction}
           />
           <CategoryBreakdown
             categories={categoryBreakdown}
@@ -68,8 +113,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <UpcomingCommitments
             commitments={commitments}
             currentDay={summary.currentDay}
+            onOpenAddModal={onOpenAddCommitment}
+            onPayCommitment={onPayCommitment}
+            onCancelCommitment={onCancelCommitment}
+            onDeleteCommitment={onDeleteCommitment}
+            onEditCommitment={onEditCommitment}
           />
-          <SavingsGoals goals={savingsGoals} />
+          <SavingsGoals
+            goals={savingsGoals}
+            onOpenAddModal={onOpenAddGoal}
+            onOpenAdjustModal={onOpenAdjustGoal}
+            onDeleteGoal={onDeleteGoal}
+          />
         </div>
       </div>
     </div>

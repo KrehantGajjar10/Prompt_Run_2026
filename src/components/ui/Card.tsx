@@ -15,21 +15,21 @@ export const Card: React.FC<CardProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    default: 'bg-[#121620] border-[#1f2737]',
-    elevated: 'bg-[#161b27] border-[#263145] shadow-lg shadow-black/40',
-    accent: 'bg-[#13191d] border-[#bef264]/30',
-    subtle: 'bg-[#0e121a] border-[#18202d]',
+    default: 'bg-zinc-900/50 border-zinc-800/80',
+    elevated: 'bg-zinc-900 border-zinc-700/80 shadow-md shadow-black/30',
+    accent: 'bg-zinc-900/80 border-[#bef264]/30',
+    subtle: 'bg-zinc-950/50 border-zinc-800/60',
   }[variant];
 
   const hoverStyles = hoverEffect
-    ? 'transition-all duration-200 hover:border-[#2f3d56] hover:bg-[#151b27]'
+    ? 'transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/80'
     : '';
 
-  const glowStyles = glow ? 'shadow-[0_0_25px_rgba(190,242,100,0.08)]' : '';
+  const glowStyles = glow ? 'shadow-[0_0_20px_rgba(190,242,100,0.06)]' : '';
 
   return (
     <div
-      className={`rounded-xl border p-5 text-[#E6EDF3] ${variantStyles} ${hoverStyles} ${glowStyles} ${className}`}
+      className={`rounded-xl border p-4 sm:p-5 text-zinc-100 ${variantStyles} ${hoverStyles} ${glowStyles} ${className}`}
       {...props}
     >
       {children}

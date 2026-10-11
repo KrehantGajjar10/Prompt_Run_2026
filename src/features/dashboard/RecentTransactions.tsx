@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { History, Search, Filter, X, ArrowDownRight, Tag } from 'lucide-react';
+import { History, Search, Filter, X, ArrowDownRight, ArrowUpRight, Tag, Plus, Trash2, Edit2 } from 'lucide-react';
 import { Card } from '../../components/ui/Card';
+import { Button } from '../../components/ui/Button';
 import type { Transaction, TransactionCategory } from '../../types/transaction';
 import { CATEGORIES } from '../../data/categories';
 import { formatINR } from '../../lib/currency';
@@ -8,11 +9,17 @@ import { formatINR } from '../../lib/currency';
 export interface RecentTransactionsProps {
   transactions: Transaction[];
   currentDay: number;
+  onOpenAddModal: () => void;
+  onEditTransaction?: (tx: Transaction) => void;
+  onDeleteTransaction?: (id: string) => void;
 }
 
 export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
   transactions,
   currentDay,
+  onOpenAddModal,
+  onEditTransaction,
+  onDeleteTransaction,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<TransactionCategory | 'all'>('all');
@@ -45,55 +52,67 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
     <Card variant="default" className="mb-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-[#1f2838] text-accent-lime">
+          <div className="p-1.5 rounded-lg bg-zinc-800 text-accent-lime border border-zinc-700/60">
             <History className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-[#f1f5f9]">
+            <h3 className="text-sm font-semibold text-zinc-100">
               Recent Transactions
             </h3>
-            <span className="text-xs text-[#94a3b8]">
-              {transactions.length} posted expenses this month
+            <span className="text-xs text-zinc-400 font-mono">
+              {transactions.length} recorded entries
             </span>
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="relative w-full sm:w-64">
-          <Search className="w-3.5 h-3.5 text-[#64748b] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-          <input
-            type="text"
-            placeholder="Search expenses..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            aria-label="Search transactions"
-            className="w-full bg-[#111621] border border-[#202b3d] rounded-lg pl-8 pr-8 py-1.5 text-xs text-[#f1f5f9] placeholder-[#64748b] focus:outline-none focus:border-accent-lime transition-colors"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748b] hover:text-[#f8fafc] cursor-pointer"
-              aria-label="Clear search"
-            >
-              <X className="w-3 h-3" />
-            </button>
-          )}
+        {/* Quick Add Button & Search */}
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="relative flex-1 sm:w-56">
+            <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search transactions"
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-8 pr-8 py-1.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-accent-lime transition-colors"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-200 cursor-pointer"
+                aria-label="Clear search"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={onOpenAddModal}
+            icon={<Plus className="w-3.5 h-3.5" />}
+            className="shrink-0"
+          >
+            Add
+          </Button>
         </div>
       </div>
 
       {/* Category Filter Pills */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-none text-xs">
-        <Filter className="w-3.5 h-3.5 text-[#64748b] shrink-0 mr-1 hidden sm:inline" />
+        <Filter className="w-3.5 h-3.5 text-zinc-500 shrink-0 mr-1 hidden sm:inline" />
         {categoriesList.map((item) => (
           <button
             key={item.id}
             type="button"
             onClick={() => setSelectedCategory(item.id)}
-            className={`px-2.5 py-1 rounded-md text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded text-xs font-mono whitespace-nowrap transition-colors cursor-pointer ${
               selectedCategory === item.id
-                ? 'bg-accent-lime text-canvas font-semibold'
-                : 'bg-[#111621] text-[#94a3b8] hover:text-[#f8fafc] border border-[#1e2738]'
+                ? 'bg-accent-lime text-zinc-950 font-bold'
+                : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-700/60'
             }`}
           >
             {item.label}
@@ -103,11 +122,11 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
 
       {/* Transactions Table / List */}
       {filteredTransactions.length === 0 ? (
-        <div className="text-center py-10 px-4 rounded-xl border border-dashed border-[#222d3f] bg-[#0e121a]">
-          <Tag className="w-8 h-8 text-[#475569] mx-auto mb-2" />
-          <p className="text-xs text-[#94a3b8] font-medium">
+        <div className="text-center py-10 px-4 rounded-xl border border-dashed border-zinc-800 bg-zinc-950/60">
+          <Tag className="w-8 h-8 text-zinc-600 mx-auto mb-2" />
+          <p className="text-xs text-zinc-400 font-medium">
             {transactions.length === 0
-              ? 'No transactions recorded in this cycle yet.'
+              ? 'No transactions recorded yet in this cycle.'
               : 'No transactions match your current search or category filter.'}
           </p>
           {(searchQuery || selectedCategory !== 'all') && (
@@ -117,79 +136,129 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                 setSearchQuery('');
                 setSelectedCategory('all');
               }}
-              className="mt-3 text-xs text-accent-lime hover:underline cursor-pointer"
+              className="mt-3 text-xs text-accent-lime hover:underline cursor-pointer font-mono"
             >
               Reset filters
             </button>
           )}
         </div>
       ) : (
-        <div className="divide-y divide-[#18212e] -mx-5 px-5">
-          {filteredTransactions.map((tx) => {
+        <div className="divide-y divide-zinc-800/80 -mx-4 sm:-mx-5 px-4 sm:px-5">
+          {filteredTransactions.slice(0, 10).map((tx) => {
             const meta = CATEGORIES[tx.category];
             const isToday = tx.day === currentDay;
+            const isIncome = tx.type === 'income';
 
             return (
               <div
                 key={tx.id}
-                className="py-3 flex items-center justify-between gap-3 hover:bg-[#111622]/60 -mx-3 px-3 rounded-lg transition-colors"
+                className="py-3 flex items-center justify-between gap-3 hover:bg-zinc-800/30 -mx-2 px-2 rounded-lg transition-colors group"
               >
                 {/* Left: Info */}
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-[#18202d] border border-[#253245] flex items-center justify-center text-[#f87171] shrink-0">
-                    <ArrowDownRight className="w-4 h-4" />
+                  <div
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
+                      isIncome
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        : 'bg-zinc-800 text-zinc-300 border-zinc-700/60'
+                    }`}
+                  >
+                    {isIncome ? (
+                      <ArrowUpRight className="w-4 h-4 text-accent-lime" />
+                    ) : (
+                      <ArrowDownRight className="w-4 h-4 text-zinc-400" />
+                    )}
                   </div>
 
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs font-semibold text-[#f1f5f9] truncate">
+                      <span className="text-xs font-semibold text-zinc-100 truncate">
                         {tx.title}
                       </span>
                       {isToday && (
-                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-accent-lime/15 text-accent-lime font-semibold border border-accent-lime/30">
+                        <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-accent-lime/10 text-accent-lime font-semibold border border-accent-lime/20">
                           Today
                         </span>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 mt-0.5 text-[11px] text-[#64748b] flex-wrap">
+                    <div className="flex items-center gap-2 mt-0.5 text-[11px] text-zinc-500 flex-wrap font-mono">
                       <span>{tx.date} • {tx.time}</span>
                       <span>•</span>
-                      <span className="text-[#94a3b8]">{tx.paymentMethod}</span>
+                      <span className="text-zinc-400">{tx.paymentMethod}</span>
                       {tx.merchant && (
                         <>
                           <span>•</span>
-                          <span className="text-[#64748b] truncate">{tx.merchant}</span>
+                          <span className="text-zinc-400 truncate">{tx.merchant}</span>
                         </>
                       )}
                     </div>
                   </div>
                 </div>
 
-                {/* Right: Category badge + Amount */}
+                {/* Right: Category badge + Amount + Actions */}
                 <div className="flex items-center gap-3 shrink-0">
                   <span
-                    className="hidden sm:inline-block text-[11px] px-2 py-0.5 rounded-full font-medium"
+                    className="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded border"
                     style={{
                       backgroundColor: meta?.badgeBg || 'rgba(255,255,255,0.05)',
-                      color: meta?.colorHex || '#94a3b8',
+                      borderColor: meta?.colorHex ? `${meta.colorHex}30` : '#3f3f46',
+                      color: meta?.badgeText || '#d4d4d8',
                     }}
                   >
                     {meta?.shortName || tx.category}
                   </span>
 
                   <div className="text-right">
-                    <div className="text-xs sm:text-sm font-bold text-[#f1f5f9] tabular-nums">
-                      -{formatINR(tx.amount)}
+                    <div
+                      className={`text-xs sm:text-sm font-bold font-mono tabular-nums ${
+                        isIncome ? 'text-accent-lime' : 'text-zinc-100'
+                      }`}
+                    >
+                      {isIncome ? '+' : '-'}{formatINR(tx.amount)}
                     </div>
-                    <div className="text-[10px] text-[#64748b]">
-                      Day {tx.day} of 30
+                    <div className="text-[10px] text-zinc-500 font-mono">
+                      Day {tx.day}
                     </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-1 opacity-80 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                    {onEditTransaction && (
+                      <button
+                        type="button"
+                        onClick={() => onEditTransaction(tx)}
+                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 cursor-pointer"
+                        title="Edit transaction"
+                        aria-label={`Edit ${tx.title}`}
+                      >
+                        <Edit2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                    {onDeleteTransaction && (
+                      <button
+                        type="button"
+                        onClick={() => onDeleteTransaction(tx.id)}
+                        className="p-1 rounded hover:bg-zinc-800 text-zinc-400 hover:text-red-400 cursor-pointer"
+                        title="Delete transaction"
+                        aria-label={`Delete ${tx.title}`}
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
+      )}
+
+      {transactions.length > 10 && (
+        <div className="mt-3 pt-3 border-t border-zinc-800 text-center">
+          <span className="text-xs font-mono text-zinc-500">
+            Showing latest 10 of {transactions.length} records.
+          </span>
         </div>
       )}
     </Card>

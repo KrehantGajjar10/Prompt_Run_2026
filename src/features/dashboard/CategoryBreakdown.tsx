@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Utensils, Compass, Zap, Sparkles, PartyPopper, HeartPulse, HelpCircle } from 'lucide-react';
+import { PieChart, Utensils, Compass, Zap, Sparkles, PartyPopper, HeartPulse, HelpCircle, ArrowDownLeft } from 'lucide-react';
 import { Card } from '../../components/ui/Card';
 import type { CategorySpendingSummary } from '../../lib/calculations';
 import { CATEGORIES } from '../../data/categories';
@@ -29,6 +29,8 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
         return <PartyPopper className="w-4 h-4" />;
       case 'emergency_health':
         return <HeartPulse className="w-4 h-4" />;
+      case 'income_deposit':
+        return <ArrowDownLeft className="w-4 h-4" />;
       default:
         return <HelpCircle className="w-4 h-4" />;
     }
@@ -37,16 +39,16 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
   if (categories.length === 0 || totalSpent === 0) {
     return (
       <Card variant="default" className="mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="p-1.5 rounded-lg bg-[#1f2838] text-accent-lime">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="p-1.5 rounded-lg bg-zinc-800 text-accent-lime border border-zinc-700/60">
             <PieChart className="w-4 h-4" />
           </div>
-          <h3 className="text-sm font-semibold text-[#f1f5f9]">
+          <h3 className="text-sm font-semibold text-zinc-100">
             Spending by Category
           </h3>
         </div>
-        <div className="text-center py-8 text-[#94a3b8] text-xs">
-          No expenses recorded yet. Your ₹10,000 budget is completely untouched!
+        <div className="text-center py-8 text-zinc-500 text-xs font-mono">
+          No expenses recorded yet. Your budget is completely untouched!
         </div>
       </Card>
     );
@@ -56,26 +58,26 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
     <Card variant="default" className="mb-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-[#1f2838] text-accent-lime">
+          <div className="p-1.5 rounded-lg bg-zinc-800 text-accent-lime border border-zinc-700/60">
             <PieChart className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-[#f1f5f9]">
+            <h3 className="text-sm font-semibold text-zinc-100">
               Spending by Category
             </h3>
-            <span className="text-xs text-[#94a3b8]">
-              Where your ₹4,250 went this month
+            <span className="text-xs text-zinc-400">
+              Where your expenses went this cycle
             </span>
           </div>
         </div>
-        <span className="text-xs font-semibold text-accent-lime tabular-nums">
+        <span className="text-xs font-semibold text-accent-lime font-mono tabular-nums">
           {formatINR(totalSpent)} total
         </span>
       </div>
 
-      {/* Visual Stacked Multi-Segment Bar */}
+      {/* Stacked Multi-Segment Bar */}
       <div className="mb-6">
-        <div className="h-3 w-full rounded-full overflow-hidden flex bg-[#161d28]">
+        <div className="h-3 w-full rounded-full overflow-hidden flex bg-zinc-800">
           {categories.map((item) => {
             const meta = CATEGORIES[item.category];
             const width = Math.max(item.percentageOfTotalSpend, 2);
@@ -85,7 +87,7 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
                 title={`${meta?.name || item.category}: ${Math.round(item.percentageOfTotalSpend)}% (${formatINR(item.totalSpent)})`}
                 style={{
                   width: `${width}%`,
-                  backgroundColor: meta?.colorHex || '#94a3b8',
+                  backgroundColor: meta?.colorHex || '#a1a1aa',
                 }}
                 className="h-full transition-all duration-300 hover:opacity-85"
               />
@@ -100,13 +102,13 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
             return (
               <div key={item.category} className="flex items-center gap-1.5">
                 <span
-                  className="w-2.5 h-2.5 rounded-full shrink-0"
-                  style={{ backgroundColor: meta?.colorHex || '#94a3b8' }}
+                  className="w-2 h-2 rounded-full shrink-0"
+                  style={{ backgroundColor: meta?.colorHex || '#a1a1aa' }}
                 />
-                <span className="text-[#cbd5e1] font-medium">
+                <span className="text-zinc-300 font-medium text-xs">
                   {meta?.shortName || item.category}
                 </span>
-                <span className="text-[#64748b] tabular-nums">
+                <span className="text-zinc-500 font-mono text-[11px] tabular-nums">
                   {Math.round(item.percentageOfTotalSpend)}%
                 </span>
               </div>
@@ -115,8 +117,8 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
         </div>
       </div>
 
-      {/* Detailed Category Table / Cards */}
-      <div className="space-y-3">
+      {/* Detailed Category Items */}
+      <div className="space-y-2.5">
         {categories.map((item) => {
           const meta = CATEGORIES[item.category];
           const pct = Math.round(item.percentageOfTotalSpend);
@@ -124,46 +126,46 @@ export const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({
           return (
             <div
               key={item.category}
-              className="p-3 rounded-lg bg-[#111621] border border-[#1d2737] hover:border-[#2b3a52] transition-colors"
+              className="p-3 rounded-lg bg-zinc-950/70 border border-zinc-800/80 hover:border-zinc-700 transition-colors"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2.5">
                   <div
-                    className="p-1.5 rounded-lg shrink-0"
+                    className="p-1.5 rounded-lg shrink-0 border border-zinc-800"
                     style={{
                       backgroundColor: meta?.badgeBg || 'rgba(255,255,255,0.05)',
-                      color: meta?.colorHex || '#94a3b8',
+                      color: meta?.colorHex || '#a1a1aa',
                     }}
                   >
                     {getCategoryIcon(item.category)}
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-[#f1f5f9]">
+                    <div className="text-xs font-semibold text-zinc-100">
                       {meta?.name || item.category}
                     </div>
-                    <div className="text-[11px] text-[#64748b]">
-                      {meta?.description || ''} • {item.transactionCount} transactions
+                    <div className="text-[11px] text-zinc-500 font-mono">
+                      {item.transactionCount} transaction{item.transactionCount === 1 ? '' : 's'}
                     </div>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-xs font-bold text-[#f8fafc] tabular-nums">
+                  <div className="text-xs font-bold text-zinc-100 font-mono tabular-nums">
                     {formatINR(item.totalSpent)}
                   </div>
-                  <div className="text-[11px] font-medium text-[#94a3b8] tabular-nums">
+                  <div className="text-[11px] font-medium text-zinc-400 font-mono tabular-nums">
                     {pct}% of spend
                   </div>
                 </div>
               </div>
 
-              {/* Individual progress track */}
-              <div className="w-full bg-[#18212e] h-1.5 rounded-full overflow-hidden">
+              {/* Category track */}
+              <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-300"
                   style={{
                     width: `${pct}%`,
-                    backgroundColor: meta?.colorHex || '#94a3b8',
+                    backgroundColor: meta?.colorHex || '#a1a1aa',
                   }}
                 />
               </div>

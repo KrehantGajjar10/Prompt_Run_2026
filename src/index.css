@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #090a0f;
-  --color-surface-base: #0d1017;
-  --color-surface-raised: #131722;
-  --color-surface-card: #181e2b;
-  --color-surface-card-hover: #1f2737;
-  --color-surface-border: #262f40;
-  --color-surface-border-subtle: #1c2330;
+  --color-canvas: #09090b;
+  --color-surface-base: #121215;
+  --color-surface-raised: #18181b;
+  --color-surface-card: #18181b;
+  --color-surface-card-hover: #222226;
+  --color-surface-border: #27272a;
+  --color-surface-border-subtle: #1f1f23;
 
   --color-accent-lime: #bef264;
   --color-accent-lime-hover: #d9f99d;
-  --color-accent-lime-dim: rgba(190, 242, 100, 0.1);
-  --color-accent-lime-border: rgba(190, 242, 100, 0.25);
+  --color-accent-lime-dim: rgba(190, 242, 100, 0.08);
+  --color-accent-lime-border: rgba(190, 242, 100, 0.22);
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 @layer base {
   * {
-    border-color: var(--color-surface-border-subtle);
+    border-color: #27272a;
   }
 
   body {
-    background-color: var(--color-canvas);
-    color: #e2e8f0;
+    background-color: #09090b;
+    color: #f4f4f5;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
@@ -35,18 +35,18 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Custom scrollbar for sleek dark look */
+/* Custom scrollbar matching dark charcoal reference */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090a0f;
+  background: #09090b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262f40;
+  background: #27272a;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #3f3f46;
 }

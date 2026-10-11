@@ -1,36 +1,28 @@
 import React from 'react';
-import { ShieldCheck, Sparkles, BookOpen } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="mt-16 border-t border-[#1a2230] bg-[#090c12] py-8 text-xs text-[#64748b]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-[#94a3b8]">
-            <ShieldCheck className="w-4 h-4 text-accent-lime" />
-            <span className="font-medium text-[#cbd5e1]">
-              Strict Accounting Rule:
-            </span>
-            <span>
-              Starting Budget (₹10,000) = Spent + Reserved Bills + Locked Savings + Available Balance.
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4 text-[#94a3b8]">
-            <span className="flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-accent-lime" />
-              Chapter 1: Foundation & Dashboard
-            </span>
-            <span className="text-[#334155]">•</span>
-            <span className="flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5 text-[#38bdf8]" />
-              Tailwind CSS v4 + React + TypeScript
-            </span>
-          </div>
+    <footer className="w-full border-t border-zinc-800/80 bg-zinc-950/80 text-zinc-400 text-xs py-8 px-4 sm:px-6 lg:px-8 mt-auto">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center sm:items-start gap-1">
+          <p className="font-mono text-zinc-300">
+            Br  oke But Functional — Digital Survival Ledger
+          </p>
+          <p className="text-[11px] text-zinc-500 max-w-lg text-center sm:text-left">
+            Strict Non-Duplicative Formula: Starting Budget (₹10k) + Inflows = Spent + Reserved Bills + Locked Savings + Available Balance.
+          </p>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-[#141b27] text-center text-[#475569]">
-          Broke But Functional — Designed for Gen Z survival on a tight monthly budget. No double-counting, no surprise overdrafts.
+        <div className="flex items-center gap-4 text-[11px] font-mono text-zinc-400 flex-wrap justify-center sm:justify-end">
+          <span className="flex items-center gap-1.5 text-zinc-300">
+            <ShieldCheck className="w-3.5 h-3.5 text-accent-lime" />
+            Zero Double-Counting
+          </span>
+          <span className="text-zinc-700">•</span>
+          <span>Verified Client Persistence</span>
+          <span className="text-zinc-700">•</span>
+          <span>30-Day Budget Engine</span>
         </div>
       </div>
     </footer>

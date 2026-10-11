@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   value: number; // 0 to 100
-  colorVariant?: 'lime' | 'emerald' | 'amber' | 'rose' | 'sky' | 'dynamic';
+  colorVariant?: 'lime' | 'emerald' | 'amber' | 'rose' | 'neutral' | 'dynamic';
   size?: 'sm' | 'md' | 'lg';
   label?: string;
   sublabel?: string;
@@ -33,27 +33,27 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
   const colorStyles = {
     lime: 'bg-[#bef264]',
-    emerald: 'bg-[#34d399]',
-    amber: 'bg-[#fbbf24]',
-    rose: 'bg-[#f87171]',
-    sky: 'bg-[#38bdf8]',
+    emerald: 'bg-emerald-400',
+    amber: 'bg-amber-400',
+    rose: 'bg-red-400',
+    neutral: 'bg-zinc-400',
   }[resolvedColor];
 
   const heightStyles = {
     sm: 'h-1.5',
-    md: 'h-2.5',
-    lg: 'h-4',
+    md: 'h-2',
+    lg: 'h-3.5',
   }[size];
 
   return (
     <div className={`w-full ${className}`} {...props}>
       {(label || showPercent || sublabel) && (
-        <div className="flex items-center justify-between text-xs mb-1.5 text-[#94a3b8]">
-          <span className="font-medium text-[#cbd5e1]">{label}</span>
+        <div className="flex items-center justify-between text-xs mb-1.5 text-zinc-400">
+          <span className="font-medium text-zinc-300">{label}</span>
           <div className="flex items-center gap-2">
-            {sublabel && <span className="text-[#64748b]">{sublabel}</span>}
+            {sublabel && <span className="text-zinc-500 font-mono text-[11px]">{sublabel}</span>}
             {showPercent && (
-              <span className="font-semibold text-[#f1f5f9] tabular-nums">
+              <span className="font-semibold text-zinc-100 font-mono text-xs tabular-nums">
                 {Math.round(clampedValue)}%
               </span>
             )}
@@ -66,7 +66,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={label || 'Progress'}
-        className={`w-full bg-[#1c2433] rounded-full overflow-hidden ${heightStyles}`}
+        className={`w-full bg-zinc-800 rounded-full overflow-hidden ${heightStyles}`}
       >
         <div
           className={`h-full rounded-full transition-all duration-500 ease-out ${colorStyles}`}

@@ -4,7 +4,7 @@ import { Skeleton } from '../../components/ui/Skeleton';
 
 export const DashboardLoadingSkeleton: React.FC = () => {
   return (
-    <div className="space-y-6" aria-label="Loading dashboard data" role="status">
+    <div className="space-y-6" aria-label="Loading financial dashboard data" role="status">
       {/* Welcome Banner Skeleton */}
       <Card variant="default" className="p-6">
         <div className="flex flex-col lg:flex-row justify-between gap-6">
